@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/ukoloff/dbs.js/issues"
   },
-  "homepage": "https://github.com/ukoloff/dbs.js"
+  "homepage": "https://github.com/ukoloff/dbs.js",
+  "devDependencies": {
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "^1.12.2",
+    "ieee754": "^1.1.8",
+    "webpack": "^1.14.0"
+  }
 }

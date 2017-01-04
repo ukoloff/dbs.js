@@ -1,0 +1,21 @@
+{
+  "name": "dbs.js",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sirius CAD/CAM in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ukoloff@github.com/ukoloff/dbs.js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ukoloff/dbs.js/issues"
+  },
+  "homepage": "https://github.com/ukoloff/dbs.js"
+}

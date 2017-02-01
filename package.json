@@ -5,7 +5,8 @@
   "description": "Sirius CAD/CAM in JavaScript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "webpack -d --watch",
+    "start": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.12.2",
     "ieee754": "^1.1.8",
+    "js-yaml": "^3.7.0",
     "webpack": "^1.14.0"
   }
 }

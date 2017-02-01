@@ -1,0 +1,22 @@
+version: 1.0.{build}-{branch}
+
+cache:
+  - node_modules
+
+install:
+  - npm install
+
+build: off
+
+before_test:
+  - node -v
+  - npm -v
+
+test_script:
+
+after_test:
+  - node_modules/.bin/webpack -p
+
+artifacts:
+  - path: tmp/*.bat
+    name: Built binaries

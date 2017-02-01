@@ -5,7 +5,7 @@ module.exports = (job, fldr)->
   task = file fldr, 'nest.task'
     .create()
   task.WriteLine """
-    TASKNAME:\tCurrentNesting
+    TASKNAME:\tSirius
     TIMELIMIT:\t60
     TASKTYPE:\tSHEET
     ITEM2DOMAINDIST:\t5

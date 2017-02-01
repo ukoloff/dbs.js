@@ -28,4 +28,19 @@ module.exports = (job, fldr)->
     geo = file fldr, "#{i}.item"
       .create()
     geo.WriteLine "ITEMNAME:\t#{i}"
+    for part in z.geo
+      for path in part.paths
+        if isClosed path
+          path = path.slice()
+          path.pop()
+        geo.WriteLine "VERTQUANT:\t#{path.length}"
+        for node in path
+          geo.WriteLine "VERTEX:\t#{node.join "\t"}"
   return
+
+isClosed = (path)->
+  if path.length < 2
+    return
+  a = path[0]
+  z = path[path.length - 1]
+  return a[0] == z[0] and a[1] == z[1]

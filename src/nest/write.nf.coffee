@@ -4,9 +4,13 @@ Write Nesting Factory job
 module.exports = (job, fldr)->
   task = file fldr, 'nest.task'
     .create()
+  # TIMELIMIT:
+  # CAT_FAST_SPEED_MODE: 6,
+  # CAT_RECOMMENDED_SPEED_MODE: 60
+  # CAT_COMPLETE_SPEED_MODE: 600
   task.WriteLine """
     TASKNAME:\tSirius
-    TIMELIMIT:\t60
+    TIMELIMIT:\t6
     TASKTYPE:\tSHEET
     ITEM2DOMAINDIST:\t5
     ITEM2ITEMDIST:\t5
@@ -27,7 +31,7 @@ module.exports = (job, fldr)->
       """
     geo = file fldr, "#{i}.item"
       .create()
-    geo.WriteLine "ITEMNAME:\t#{i}"
+    geo.WriteLine "ITEMNAME:\tgeo#{i}"
     for part in z.geo
       for path in part.paths
         if isClosed path

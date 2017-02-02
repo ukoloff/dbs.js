@@ -31,8 +31,7 @@ module.exports = (job, fldr)->
     for part in z.geo
       for path in part.paths
         if isClosed path
-          path = path.slice()
-          path.pop()
+          path = path.slice 0, -1
         geo.WriteLine "VERTQUANT:\t#{path.length}"
         for node in path
           geo.WriteLine "VERTEX:\t#{node.join "\t"}"

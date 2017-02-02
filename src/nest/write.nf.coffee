@@ -31,7 +31,7 @@ module.exports = (job, fldr)->
       """
     geo = file fldr, "#{i}.item"
       .create()
-    geo.WriteLine "ITEMNAME:\t#{i}"
+    geo.WriteLine "ITEMNAME:\tgeo#{i}"
     for part in z.geo
       for path in part.paths
         if isClosed path

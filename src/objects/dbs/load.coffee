@@ -6,6 +6,7 @@ exe = file argv0.up(), 'dbs2json.exe'
 module.exports = (f)->
   unless f.y()
     throw Error "File not found:", f
+
   child = sh.exec """
       "#{exe}" "#{f}"
     """

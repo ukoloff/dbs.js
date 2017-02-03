@@ -4,6 +4,9 @@ Entry point
 if 1 != argv.length
   throw Error "Usage: #{argv0.bn()} path/to/jobname.kol"
 
+dbs.load()
+dbs.kol.load()
+
 kol = require './read.kol'
 counts = require './counts'
 wnf = require './write.nf'

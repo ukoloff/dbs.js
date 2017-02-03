@@ -68,3 +68,12 @@ exports.save = ->
   for s in arguments
     f.Write s
   f.Close()
+
+compact = (trim, list)->
+  unless trim
+    return list
+  for s in list when s = s.replace /^\s+|\s+$/g, ''
+    s
+
+exports.lines = (trim)->
+  compact trim, @load().split /\r\n?|\n/

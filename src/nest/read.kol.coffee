@@ -9,15 +9,12 @@ module.exports = (f)->
 
   echo 'Reading:', f
 
-  for s in f.load().split /\r\n?|\n/
-    unless s = s.replace /^\s+|\s+$/g, ''
-      continue
+  for s in f.lines true
     z = splitZ s, 2
     path: path = file z[0] + '.dbs'
     geo: readDBS path
     count: Number z[1]
     list: /^0*$/.test z[2]
-
 
 splitZ = (s, n)->
   res = []

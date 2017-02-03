@@ -1,5 +1,23 @@
 ###
-Load Job in KOL format
+Read Job in .kol format
 ###
+module.exports = (f)->
+  unless f.y()
+    throw Error "File <#{f.bn()}> not found!"
 
-echo "KOL::load!"
+  echo 'Reading:', f
+
+  for s in f.lines true
+    z = splitZ s, 2
+    path: path = file z[0] + '.dbs'
+    geo: dbs.load path
+    count: Number z[1]
+    list: /^0*$/.test z[2]
+
+splitZ = (s, n)->
+  res = []
+  while n--
+    s = s.replace /\s+(\S+)$/, ''
+    res.unshift RegExp.$1
+  res.unshift s
+  res

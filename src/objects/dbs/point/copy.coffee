@@ -1,4 +1,5 @@
 ###
 Copy of point
 ###
-module.exports = [].slice
+module.exports = (point)->
+  point.slice()

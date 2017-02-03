@@ -23,10 +23,12 @@ for libname in fs.readdirSync root
   z = {}
   for file in fs.readdirSync lib
     if 'index' == name = path.parse(file).name
-      entry[libname] = "self/#{libname}"
+      entry[libname] = lib
       z = {}
       break
-    z[name] = "self/#{libname}/#{file}"
+    z[name] = path.join lib, file
   for k, v of z
+    if fs.statSync(v).isDirectory()
+      continue
     globals["#{libname}.#{k}"] =
     globals[k] = v

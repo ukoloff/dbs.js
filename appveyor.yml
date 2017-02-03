@@ -15,7 +15,7 @@ before_test:
 test_script:
 
 after_test:
-  - node_modules/.bin/webpack -p
+  - node webpack -p
 
 artifacts:
   - path: tmp/*.bat

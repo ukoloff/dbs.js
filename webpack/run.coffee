@@ -6,7 +6,7 @@ path = require 'path'
 spawn = require 'child_process'
   .spawn
 
-root = path.join __dirname, '../..'
+root = path.join __dirname, '..'
 flag = path.join root, 'tmp/.restart'
 
 do start = ->

@@ -13,7 +13,6 @@ module.exports = ->
   n = 16
   while n--
     f = folder tmp, rnd 6
-    echo ">>>", f
     unless f.y()
       return f.mk()
   throw Error "Cannot create temporary folder!"

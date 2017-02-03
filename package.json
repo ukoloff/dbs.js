@@ -5,7 +5,7 @@
   "description": "Sirius CAD/CAM in JavaScript",
   "main": "index.js",
   "scripts": {
-    "test": "webpack -d --watch",
+    "test": "node webpack -d --watch",
     "start": "webpack -p"
   },
   "repository": {

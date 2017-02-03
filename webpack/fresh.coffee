@@ -1,6 +1,8 @@
 ###
 Check that source tree is not changed on rebuild
 ###
+fs = require 'fs'
+path = require 'path'
 crypto = require 'crypto'
 
 module.exports = ->
@@ -18,5 +20,6 @@ module.exports = ->
       delete require.cache[tree]
 
       return if hash == do calc
+      fs.writeFileSync path.join(__dirname, '../tmp/.restart'), ''
+      process.exit 0
 
-      throw Error "Source tree changed!"

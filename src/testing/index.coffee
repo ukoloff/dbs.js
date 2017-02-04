@@ -90,7 +90,7 @@ if root.failed
       echo "#{prefix}- #{z.title}"
       report z
     for z in suit.tests when z.error and z.up[0] == suit
-      echo "#{prefix}  # #{z.title}"
+      echo "#{prefix}  # #{z.title}\t// @#{z.file}"
       echo "#{prefix}   : #{z.error.message}"
     return
   echo ""

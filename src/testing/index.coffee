@@ -1,4 +1,2 @@
-do ->
-  @expect = require 'expect.js'
-
+require './expect'
 require './mocha'

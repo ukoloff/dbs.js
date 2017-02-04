@@ -11,7 +11,7 @@ newTest = (title, fn)->
 
 insert = (parent, child)->
   for z in child.up = [parent].concat parent.up
-    (if child.fn then z.suits else z.tests).push child
+    (if child.fn then z.tests else z.suits).push child
   return
 
 exec = (suit, fn)->
@@ -46,5 +46,12 @@ for k, v of require './tests'
   exec root, v
 root.file = root.fn
 
-for t in root.tests
+shuffle = (array)->
+  array = array.slice()
+  for v, i in array by -1
+    array[i] = array[n = Math.floor array.length * Math.random()]
+    array[n] = v
+  array
+
+for t in shuffle root.tests
   echo "-", t.title

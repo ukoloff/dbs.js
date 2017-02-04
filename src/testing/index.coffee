@@ -54,6 +54,8 @@ shuffle = (array)->
     array[n] = v
   array
 
+stdout = wsh.StdOut
+
 for t in shuffle root.tests by -1
   t.start = start = new Date
   for s in t.up by -1
@@ -74,7 +76,7 @@ for t in shuffle root.tests by -1
     else
       s.ok++
 
-  wsh.StdOut.Write if t.error then '!' else '.'
+  stdout.Write if t.error then '!' else '.'
 
 echo '\n'
 

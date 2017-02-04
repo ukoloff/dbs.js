@@ -20,3 +20,8 @@
 # Wildcard
 :*:
   <<: *cli
+
+testing:
+  <<: *cli
+  after: |
+    exit %ERRORLEVEL%

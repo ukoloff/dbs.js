@@ -3,4 +3,4 @@ describe 'Second suit', ->
     expect(6*7).to.be.a 'number'
 
   it 'Third test', ->
-    expect('').to.be.a 'string'
+    expect('').to.be.a 'string$'

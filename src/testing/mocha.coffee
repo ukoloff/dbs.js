@@ -53,5 +53,17 @@ shuffle = (array)->
     array[n] = v
   array
 
-for t in shuffle root.tests
-  echo "-", t.title
+for t in shuffle root.tests by -1
+  t.start = start = new Date
+  for s in t.up by -1
+    s.start ||= start
+  try
+    do t.fn
+  catch e
+    t.error = e
+  t.stop = stop = new Date
+  for s in t.up by -1
+    s.stop = stop
+  wsh.StdOut.Write if t.error then '!' else '.'
+
+echo ''

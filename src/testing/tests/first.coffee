@@ -1,1 +1,3 @@
-expect(->).to.be.a 'function'
+describe 'First suit', ->
+  it 'First test', ->
+    expect(->).to.be.a 'function'

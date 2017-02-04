@@ -101,3 +101,6 @@ counts = (data)->
 echo "Tests:", counts root
 echo "Assertions:", counts expect.counts()
 echo "Time spent:", (root.stop - root.start) / 1000, 's'
+
+if root.failed
+  exit 1

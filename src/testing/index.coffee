@@ -89,10 +89,9 @@ if root.failed
     for z in suit.suits when z.failed
       echo "#{prefix}- #{z.title}"
       report z
-    prefix += '  '
     for z in suit.tests when z.error and z.up[0] == suit
-      echo "#{prefix}# #{z.title}"
-      echo "#{prefix}  : #{z.error.message}"
+      echo "#{prefix}  # #{z.title}"
+      echo "#{prefix}   : #{z.error.message}"
     return
   echo ""
 

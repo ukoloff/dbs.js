@@ -1,7 +1,5 @@
 ###
 Length of vector
 ###
-abs2 = require './abs2'
-
 module.exports = (point)->
-  Math.sqrt abs2 point
+  point[0] * point[0] + point[1] * point[1]

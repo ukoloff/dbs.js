@@ -86,12 +86,12 @@ if root.failed
     prefix = ''
     for z in suit.up
       prefix += '  '
-    for z in suit.suits when z.failed
-      echo "#{prefix}- #{z.title}"
-      report z
     for z in suit.tests when z.error and z.up[0] == suit
       echo "#{prefix}  # #{z.title}\t// @#{z.file}"
       echo "#{prefix}   : #{z.error.message}"
+    for z in suit.suits when z.failed
+      echo "#{prefix}- #{z.title}\t// @#{z.file}"
+      report z
     return
   echo ""
 

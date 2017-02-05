@@ -20,6 +20,10 @@ values = (map)->
     litcoffee:
       test: /[.](litcoffee|coffee[.]md)$/
       loader: "coffee?literate"
+    glob:
+      # coffee above will also apply after this
+      test: /[\/\\]tests[.]coffee$/
+      loader: require.resolve './glob'
 
 brk = (s)->
   s.split ' '

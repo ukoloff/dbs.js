@@ -11,11 +11,12 @@ build: off
 before_test:
   - node -v
   - npm -v
+  - node webpack -p
 
 test_script:
+  - tmp\testing
 
 after_test:
-  - node webpack -p
 
 artifacts:
   - path: tmp/*.bat

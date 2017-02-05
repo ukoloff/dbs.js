@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node webpack -d --watch",
-    "start": "webpack -p"
+    "start": "node webpack -p"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "devDependencies": {
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.12.2",
+    "expect.js": "^0.3.1",
     "ieee754": "^1.1.8",
     "js-yaml": "^3.7.0",
     "webpack": "^1.14.0"

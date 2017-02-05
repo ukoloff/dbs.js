@@ -24,6 +24,7 @@ values = (map)->
       # coffee above will also apply after this
       test: /[\/\\]tests[.]coffee$/
       loader: require.resolve './glob'
+  noParse: /[\/\\]expect[.]js[\/\\]/
 
 brk = (s)->
   s.split ' '

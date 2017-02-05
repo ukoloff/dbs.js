@@ -89,3 +89,49 @@ describe 'dbs::Span', ->
 
       span.b--
     return
+
+  it 'knows its perimeter', ->
+    span =
+      a: [0, 0]
+      b: 0
+      z: [0, 1]
+    eq = (p)->
+      expect dbs.span.perimeter span
+      .to.be.closeTo p
+    eq 1
+    span.a[1] = 2
+    eq 1
+    span.a[0] = 1
+    eq Math.sqrt 2
+    span.b = Math.sqrt(2) - 1
+    eq Math.PI / 2
+    span.b = -span.b
+    eq Math.PI / 2
+    span.b = 1
+    eq Math.PI / Math.sqrt 2
+    span.b = -1
+    eq Math.PI / Math.sqrt 2
+
+  it 'knows its area', ->
+    span =
+      a: [0, 0]
+      b: 0
+      z: [0, 1]
+    eq = (p)->
+      expect dbs.span.area span
+      .to.be.closeTo p
+
+    eq 0
+    span.z[0] = 1
+    eq 0
+    span.a[1] = 1
+    eq 0.5
+
+    span =
+      a: [10, 0]
+      b: 1
+      z: [11, 0]
+
+    eq -Math.PI / 8
+    span.b = 1 - Math.sqrt 2
+    eq Math.PI / 8 - 1 / 4

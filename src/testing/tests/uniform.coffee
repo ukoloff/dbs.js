@@ -20,5 +20,5 @@ describe 'dbs::Span.uniform', ->
       span.b--
 
       expect max / min - 1
-      .to.be.below 0.25
+      .to.be.below 0.205
     return

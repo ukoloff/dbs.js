@@ -2,11 +2,12 @@
 Iterator over path's spans
 ###
 module.exports = (path)->
+  echo 'S', path
   i = 0
   ->
-    if i >= path.length
+    j = i
+    if ++i >= path.length
       return
-    j = i++
     a: point path[j]    # Start of span
     b: path[0][2]       # Bulge
     z: point path[i]    # End of span

@@ -1,9 +1,11 @@
 ###
 Find perimeter
 ###
+spans = require './spans'
+
 module.exports = (path)->
   p = 0
-  spans = path.spans()
-  while span = spans()
+  all = spans path
+  while span = all()
     p += dbs.span.perimeter span
   p

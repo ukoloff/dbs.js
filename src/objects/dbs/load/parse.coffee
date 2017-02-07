@@ -24,7 +24,7 @@ module.exports = (reader)->
       throw Error 'Invalid DBS'
 
     # Position of next record
-    next += (len - 1) * 4
+    next += (len + 1) * 4
 
     # Record type
     unless parser = kinds[dbs.buffer.get.uint0 reader]

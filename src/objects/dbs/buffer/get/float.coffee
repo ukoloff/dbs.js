@@ -1,6 +1,7 @@
 ###
 Read short (4 byte) float
 ###
+ieee754 = require 'ieee754'
 get = require '.'
 
 module.exports = (buffer)->

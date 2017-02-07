@@ -16,14 +16,3 @@ exports.dec = (str)->
   res = element.nodeTypedValue
   element.text = ''
   res
-
-# Revert bytes
-revert = (str)->
-  str
-  .match(/../g)
-  .reverse()
-  .join ''
-
-# Get integer
-exports.i = (blob)->
-  parseInt revert(hex.enc blob), 16

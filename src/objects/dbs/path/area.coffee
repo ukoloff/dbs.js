@@ -2,12 +2,10 @@
 Find area
 ###
 closed = require './closed'
+spans = require './spans'
 
 module.exports = (path)->
   unless closed path
     return 0
-  s = 0
-  spans = path.spans()
-  while span = spans()
-    s += dbs.span.area span
-  s
+  spans path, 0, (span, i, s)->
+    s + dbs.span.area span

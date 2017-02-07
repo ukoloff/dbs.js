@@ -2,7 +2,8 @@
 Entry point
 ###
 if 1 != argv.length
-  throw Error "Usage: #{argv0.bn()} path/to/jobname.kol"
+  echo "Usage:", argv0.bn(), "path/to/jobname.kol"
+  exit()
 
 dbs.kol.counts job = dbs.kol.load file argv[0]
 

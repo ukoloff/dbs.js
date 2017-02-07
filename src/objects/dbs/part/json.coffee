@@ -8,7 +8,7 @@ module.exports = json = (part, pretty)->
     space = " "
   s = "{#{eol}#{
     quote 'partid'}:#{space}#{quote part.partid},#{eol}#{
-    quote 'paths'}#{space}["
+    quote 'paths'}:#{space}["
   for path, i in part.paths
     s += ',' if i
     s += "#{eol}#{dbs.path.json path, pretty}"

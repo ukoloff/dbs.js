@@ -5,9 +5,9 @@ Linear coordinate transformation:
   +1 -> z (end)
 ###
 vector = require './vector'
-add = dbs.point.add
-mul = dbs.point.mul
-div = dbs.point.div
 
 module.exports = (span, point)->
-  div add(span.a, add span.z, mul point, vector span), 2
+  dbs.point.div dbs.point.add(
+    span.a,
+    dbs.point.add span.z,
+      dbs.point.mul point, vector span), 2

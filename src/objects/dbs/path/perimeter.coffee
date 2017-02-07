@@ -5,7 +5,5 @@ spans = require './spans'
 
 module.exports = (path)->
   p = 0
-  all = spans path
-  while span = all()
-    p += dbs.span.perimeter span
-  p
+  spans path, 0, (span, i, p)->
+    p + dbs.span.perimeter span

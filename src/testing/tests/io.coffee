@@ -17,8 +17,7 @@ describe 'DBS', ->
       expect dbs.path.closed path
       .to.be.ok()
 
-      spans = dbs.path.spans path
-      while span = spans()
+      dbs.path.spans path, (span)->
         expect dbs.point.abs dbs.span.center span
         .to.be.closeTo 0
 

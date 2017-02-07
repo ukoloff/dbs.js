@@ -2,7 +2,6 @@
 Iterator over path's spans
 ###
 module.exports = (path)->
-  echo 'S', path
   i = 0
   ->
     j = i

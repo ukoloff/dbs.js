@@ -10,9 +10,17 @@ describe 'DBS', ->
     expect paths
     .to.have.length 2
 
-    for path in paths
+    for path, i in paths
       expect path
       .to.have.length 3
 
       expect dbs.path.closed path
       .to.be.ok()
+
+      spans = dbs.path.spans path
+      while span = spans()
+        expect dbs.point.abs dbs.span.center span
+        .to.be.closeTo 0
+
+        expect dbs.span.radius span
+        .to.be.closeTo 2 - i

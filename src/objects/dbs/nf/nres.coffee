@@ -28,7 +28,7 @@ module.exports = (file)->
       nodes = Number lines.shift()
       path = while nodes--
         nums lines.shift().split /\s+/
-      close path
+      close dbs.path.reverse path
 
 # sprintf %04d
 num4 = (i)->

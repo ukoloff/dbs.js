@@ -9,3 +9,4 @@ module.exports = ->
   delta = vectors[2]
   for v, i in vectors by -1 when i != 2
     vectors[i] = dbs.point.sub v, delta
+  vectors

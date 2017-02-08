@@ -12,4 +12,6 @@ echo "Creating Nestig Factory Job at:", dst = dbs.nf.sandbox()
 dbs.nf.write job, dst
 dbs.nf.launch dst.bn()
 
+result = dbs.nf.parse dst
+
 # dst.rm()

@@ -1,6 +1,7 @@
 ###
 Parse nesting results
 ###
+nres = require './nres'
 trace = require './trace'
 
 module.exports = (job)->
@@ -10,4 +11,7 @@ module.exports = (job)->
 
   n = Number lines.shift()
   while n-- when line = lines.shift()
-    trace file job, file(line).n() + '.trace'
+    if (tfile = file job, file(line).n() + '.trace').y()
+      trace tfile
+    else
+      nres file job, line

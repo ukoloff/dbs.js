@@ -11,7 +11,12 @@ echo "Creating Nestig Factory Job at:", dst = dbs.nf.sandbox()
 
 dbs.nf.write job, dst
 dbs.nf.launch dst.bn()
-
+echo "Parsing results"
 result = dbs.nf.parse dst
+dst.rm()
+result = dbs.nf.results result, job
 
-# dst.rm()
+echo "Writing results..."
+for z, i in result
+  file "#{i}.yml"
+  .save dbs.yaml z

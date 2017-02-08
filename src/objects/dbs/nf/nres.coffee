@@ -3,10 +3,15 @@ Parse nres-file
 ###
 module.exports = (file)->
   lines =file.lines true
-  i = 0
-  n = Number.lines.shift()  # Number of parts
+  n = Number lines.shift()  # Number of parts
   while n--
-    lines.shift()           # Name of part/list
+    pname = lines.shift()           # Name of part/list
+    if partids
+      partid = partids[pname] ||= "PART#{num4 1 + count partids}"
+    else
+      # First part is list
+      partids = {}
+      partid = 'LIST'
 
     # First representation
     paths = Number lines.shift()
@@ -18,7 +23,7 @@ module.exports = (file)->
     # Second representation
     paths = Number lines.shift()
     # Resulting part
-    partid: if i++ then "PART#{num4 i}" else "LIST"
+    partid: partid
     paths: while paths--
       nodes = Number lines.shift()
       path = while nodes--
@@ -31,6 +36,13 @@ num4 = (i)->
   while i.length < 4
     i = '0' + i
   i
+
+# count of keys
+count = (rec)->
+  n = 0
+  for k of rec
+    n++
+  n
 
 # Convert strings to numbers
 nums = (a)->

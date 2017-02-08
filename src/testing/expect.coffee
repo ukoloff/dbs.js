@@ -29,3 +29,4 @@ proto.closeTo = (value, eps = 1e-3)->
   @assert Math.abs(@obj - value) < eps,
     => "expected #{@obj} to be approximately #{value}"
     => "expected #{@obj} to be not approximately #{value}"
+  @

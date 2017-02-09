@@ -1,14 +1,24 @@
 ###
 Iterate thru OLE Collection
 ###
-module.exports = (collection, fn)->
-  res = [] if 'function' != typeof fn
+module.exports = exports = (collection)->
+  [fn, accumulator] = parse arguments
   n = 0
   E = new Enumerator collection
   while !E.atEnd()
-    if res
-      res.push E.item()
-    else if false == fn E.item(), n++
-      return
+    accumulator = fn E.item(), n++, accumulator
     E.moveNext()
-  res
+  accumulator
+
+# Parse iterator arguments, finding function and initial value
+exports.$ = parse = (args, start = 1)->
+  i = 2
+  while i--
+    if 'function' == typeof fn = args[start + i]
+      return [fn, args[start + 1 - i]]
+  # No function specified. Map is assumed
+  [map, []]
+
+map = (item, position, list)->
+  list.push item
+  list

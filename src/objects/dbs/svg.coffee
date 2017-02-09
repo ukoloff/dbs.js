@@ -1,10 +1,18 @@
 ###
 Output as SVG
 ###
+bounds = require './bounds'
+
 module.exports = (file)->
+  b = bounds file
+  b = [b[0][0], -b[1][1]].concat dbs.rect.size b
   svg = ''
-  for part, n in file
-    if n
+  for part in file
+    if svg
       svg += '\n'
     svg += dbs.part.svg part
-  svg
+  """
+  <svg height="100%" width="100%" viewBox="#{b.join ' '}"><g transform = "scale(1, -1)">
+  #{svg}
+  </g></svg>
+  """

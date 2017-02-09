@@ -3,8 +3,8 @@ Output as SVG
 ###
 module.exports = (part)->
   svg = ''
-  for path, n in part.paths
-    if n
+  for path in part.paths
+    if svg
       svg += '\n'
     svg += dbs.path.svg path
   """

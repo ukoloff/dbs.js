@@ -23,3 +23,10 @@ describe 'DBS', ->
 
         expect dbs.span.radius span
         .to.be.closeTo 2 - i
+
+describe 'DBS', ->
+  it 'can be saved to file', ->
+    tmp = folder '../tmp'
+    for f in folder('.').files() when f.ext() == 'dbs'
+      d = dbs.load f
+      dbs.save d, file tmp, f.bn()

@@ -1,20 +1,18 @@
 ###
 Iterate over path's spans (with reduce)
 ###
-module.exports = (path, value, fn)->
-  if not fn? and 'function' == typeof value
-    fn = value
-    value = i
-  i = 1
-  while i < path.length
-    value = fn
-      a: point path[i - 1]  # Start of span
-      b: path[0][2]         # Bulge
-      z: point path[i]      # End of span
-      i - 1
-      value
+module.exports = (path)->
+  [fn, accumulator] = each.$ arguments
+  i = 0
+  while path.length > j = i + 1
+    accumulator = fn
+      a: point path[i]  # Start of span
+      b: path[i][2]     # Bulge
+      z: point path[j]  # End of span
+      i
+      accumulator
     i++
-  value
+  accumulator
 
 point = (node)->
   node.slice 0, 2

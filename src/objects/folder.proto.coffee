@@ -42,14 +42,13 @@ exports.mk = (clean)->
 exports.$ = ->
   fso.GetFolder @
 
-children = (list, map)->
-  res = []
-  each list, (child)->
-    res.push map child
-  res
+children = (list, args, map)->
+  [fn, accumulator] = each.$ args, 0
+  each list, accumulator, (child, n, accumulator)->
+    fn map(child), n, accumulator
 
 exports.files = ->
-  children @$().Files, require './file'
+  children @$().Files, arguments, require './file'
 
 exports.folders = ->
-  children @$().SubFolders, require './folder'
+  children @$().SubFolders, arguments, require './folder'

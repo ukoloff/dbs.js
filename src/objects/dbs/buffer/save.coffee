@@ -7,6 +7,9 @@ module.exports = (buffer, name)->
     s += hex2 b
   stream = binstream()
   stream.Write hex.dec s
+  try
+    file name
+    .rm()
   stream.SaveToFile name
   return
 

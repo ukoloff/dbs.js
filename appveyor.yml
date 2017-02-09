@@ -11,7 +11,7 @@ build: off
 before_test:
   - node -v
   - npm -v
-  - node webpack -p
+  - node webpack -d
 
 test_script:
   - tmp\testing

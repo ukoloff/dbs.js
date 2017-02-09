@@ -26,7 +26,10 @@ describe 'DBS', ->
 
 describe 'DBS', ->
   it 'can be saved to file', ->
-    tmp = folder '../tmp'
     for f in folder('.').files() when f.ext() == 'dbs'
       d = dbs.load f
-      dbs.save d, file tmp, f.bn()
+      dbs.save d, tmp = file  "another.#{f.bn()}"
+      expect dbs.load tmp
+      .to.be.eql d
+      try tmp.rm()
+    return

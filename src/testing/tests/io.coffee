@@ -31,8 +31,8 @@ describe 'DBS save + load = nop', ->
       return
     it "for #{f.bn()}", ->
       d = dbs.load f
-      dbs.save d, tmp = file  "another.#{f.bn()}"
+      dbs.save d, tmp = file "another.#{f.bn()}"
       expect dbs.load tmp
       .to.be.eql d
-      try tmp.rm()
+      tmp.rm()
       return

@@ -24,12 +24,15 @@ describe 'DBS', ->
         expect dbs.span.radius span
         .to.be.closeTo 2 - i
 
-describe 'DBS', ->
-  it 'can be saved to file', ->
-    for f in folder('.').files() when f.ext() == 'dbs'
+describe 'DBS save + load = nop', ->
+  folder '.'
+  .files (f)->
+    if f.ext() != 'dbs'
+      return
+    it "for #{f.bn()}", ->
       d = dbs.load f
       dbs.save d, tmp = file  "another.#{f.bn()}"
       expect dbs.load tmp
       .to.be.eql d
       try tmp.rm()
-    return
+      return

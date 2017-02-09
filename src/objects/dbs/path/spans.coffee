@@ -9,7 +9,7 @@ module.exports = (path, value, fn)->
   while i < path.length
     value = fn
       a: point path[i - 1]  # Start of span
-      b: path[0][2]         # Bulge
+      b: path[i - 1][2]         # Bulge
       z: point path[i]      # End of span
       i - 1
       value

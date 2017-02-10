@@ -24,6 +24,8 @@
     "coffee-script": "^1.12.2",
     "expect.js": "^0.3.1",
     "js-yaml": "^3.7.0",
+    "node-getopt": "^0.2.3",
+    "options-parser": "^0.4.0",
     "webpack": "^1.14.0"
   }
 }

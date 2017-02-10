@@ -21,7 +21,7 @@ nums = (a)->
 
 # Build transformation
 o2 = (a)->
-  t = dbs.o2.cw a[1]
+  t = dbs.o2.ccw a[1]
   if a[0]
-    t = dbs.o2.merge dbs.o2.antix(), t
+    t = dbs.o2.merge t, dbs.o2.antix()
   dbs.o2.merge dbs.o2.translation(a.slice 2), t

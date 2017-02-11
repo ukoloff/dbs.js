@@ -13,13 +13,28 @@ if params.h or params.length != 1
   params.list()
   exit()
 
-echo 'Loading:', params[0]
+unless stdout = params.o in [true, '', '-']
+  echo 'Loading:', params[0]
 z = dbs.load params[0]
 
 out = (ext, string)->
-  echo '>>>', ext
   params.J = 1
-  echo string
+  if stdout
+    echo string
+    return
+  dst = params[0]
+  if params.o
+    dst = if (at = folder params.o).y()
+      file at, file(dst).bn()
+    else
+      params.o
+  dst = file dst + '.' + ext
+    .abs()
+  if not params.f and dst.y()
+    echo "Skipping:", dst
+    return
+  echo "Writing:", dst
+  dst.save string
 
 if params.y
   out 'yml', dbs.yaml z

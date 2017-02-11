@@ -30,6 +30,7 @@ module.exports = (definitions)->
       while k.length < len
         k += ' '
       echo "  -#{k.charAt 0}  --#{k} #{v.help}"
+    echo "\nSee", PACKAGE.homepage
     return
 
   # Return parser

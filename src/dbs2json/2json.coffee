@@ -1,8 +1,9 @@
 ###
 Entry point
 ###
-params = require './getopt'
 svg = require './svg'
+options = getopt require './options'
+params = options argv
 
 if params.h or params.length != 1
   echo """
@@ -10,7 +11,7 @@ if params.h or params.length != 1
 
     Options:
   """
-  params.list()
+  options()
   exit()
 
 unless stdout = params.o in [true, '', '-']

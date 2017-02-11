@@ -2,7 +2,7 @@
 SVG output
 ###
 module.exports = (file)->
-  echo """
+  """
 <!DOCTYPE>
 <html>
 <head>

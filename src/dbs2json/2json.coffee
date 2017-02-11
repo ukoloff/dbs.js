@@ -1,22 +1,33 @@
 ###
 Entry point
 ###
-getopt = require './getopt'
+params = require './getopt'
+svg = require './svg'
 
-params = getopt.parse argv
+if params.h or params.length != 1
+  echo """
+    Usage: #{argv0.bn()} [options] path/to/file.dbs
 
-echo dump5 params
-exit()
-echo 'Loading:', params._[0]
-z = dbs.load params._[0]
+    Options:
+  """
+  params.list()
+  exit()
+
+echo 'Loading:', params[0]
+z = dbs.load params[0]
+
+out = (ext, string)->
+  echo '>>>', ext
+  params.J = 1
+  echo string
 
 if params.y
-  echo dbs.yaml z
-else if params.d
-  echo dbs.dxf z
-else if params.n
-  echo dbs.algomate z
-else if params.s
-    require('./svg') z
-else
-  echo dbs.json z, params.p
+  out 'yml', dbs.yaml z
+if params.d
+  out 'dxf', dbs.dxf z
+if params.a
+  out 'item', dbs.algomate z
+if params.s
+  out 'html', svg z
+if params.j or not params.J
+  out 'json', dbs.json z, params.p

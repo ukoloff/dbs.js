@@ -1,0 +1,10 @@
+# Command line options
+help: Show this help
+output: =Save result to file/folder
+force: Overwrite existing file
+pretty: Pretty output (JSON only)
+algomate: Output as Algomate's .item-file
+json: Output as JSON (default)
+dxf: Output as DXF
+svg: Output as SVG (embedded into HTML)
+yaml: Output as YAML

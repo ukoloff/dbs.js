@@ -32,9 +32,7 @@ for z, i in result
     while postfix.length < "#{result.length}".length
       postfix = '0' + postfix
     postfix = '.' + postfix
-  postfix = file "#{kolfile.n()}#{postfix}"
+  postfix = file "#{kolfile.n()}#{postfix}.dbs"
     .abs()
   echo "- #{postfix}"
-  dbs.save z, postfix + '.dbs'
-  file postfix + '.yml'
-  .save dbs.yaml z
+  dbs.save z, postfix

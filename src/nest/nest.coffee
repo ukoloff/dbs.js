@@ -1,11 +1,19 @@
 ###
 Entry point
 ###
-if 1 != argv.length
-  echo "Usage:", argv0.bn(), "path/to/jobname.kol"
+options = getopt require './options'
+params = options argv
+
+if params.h or params.length != 1
+  echo """
+    Usage: #{argv0.bn()} [options] path/to/jobname.kol
+
+    Options:
+  """
+  options()
   exit()
 
-dbs.kol.counts job = dbs.kol.load argv0 = file argv[0]
+dbs.kol.counts job = dbs.kol.load kolfile = file params[0]
 
 echo "Creating Nestig Factory Job at:", dst = dbs.nf.sandbox()
 
@@ -24,7 +32,7 @@ for z, i in result
     while postfix.length < "#{result.length}".length
       postfix = '0' + postfix
     postfix = '.' + postfix
-  postfix = file "#{argv0.n()}#{postfix}"
+  postfix = file "#{kolfile.n()}#{postfix}"
     .abs()
   echo "- #{postfix}"
   dbs.save z, postfix + '.dbs'

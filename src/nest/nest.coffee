@@ -20,8 +20,8 @@ echo "Creating Nestig Factory Job at:", dst = dbs.nf.sandbox()
 dbs.nf.write job, dst
 dbs.nf.launch dst.bn()
 echo "Parsing results"
-result = dbs.nf.parse dst
-result = dbs.nf.results result, job
+result = dbs.nf.parse dst, true
+result = dbs.nf.dbs result, job
 dst.rm()
 
 echo "Writing results..."

@@ -1,5 +1,7 @@
 ###
 Parse nres-file
+
+Returns full DBS: [part, part, part...]
 ###
 module.exports = (file)->
   lines =file.lines true

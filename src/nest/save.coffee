@@ -3,6 +3,12 @@ Write DBS
 ###
 params = require './params'
 
+defaults = (path)->
+  if 'string' != typeof path
+    '.'
+  else
+    path
+
 module.exports = (result)->
   echo "Writing results..."
 
@@ -12,7 +18,7 @@ module.exports = (result)->
     dirname = dirname.up()
 
   if params.o
-    unless (dirname = folder params.o).y()
+    unless (dirname = folder defaults params.o).y()
       echo "Not a folder:", dirname.abs()
       exit()
 

@@ -16,6 +16,7 @@ dirname = folder dirname, basename
 
 if !params.f and dirname.y()
   echo "Folder exists:", dirname
+  exit()
 
 dirname.mk true
 
@@ -24,7 +25,7 @@ dbs.nf.write params.job, dirname
 echo """
 Nesting Job saved to: #{dirname}
 
-Launch CatUI, nest it, then run
+Launch CatUI, nest it, then run:
 
 #{argv0.bn()} "#{dirname}"
 

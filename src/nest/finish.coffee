@@ -4,7 +4,13 @@ Load results of nesting and save DBS
 params = require './params'
 save = require './save'
 
-if !(f = folder params.r).y()
+defaults = (path)->
+  if 'string' != typeof path
+    '.'
+  else
+    path
+
+if !(f = folder defaults params.r).y()
   echo "Not a folder:", f.abs()
   exit()
 

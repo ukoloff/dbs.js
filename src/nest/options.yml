@@ -1,7 +1,8 @@
 # Command line options
 help: Show this help
 output: =Save result to folder
+force: Ovewrite file(s)/folder if exist(s)
 manual: Manual nesting - just create data file(s)
 algomate: Nest with Algomate's Nesting Factory (default)
 tflex: Nest with T-Flex Nesting (not implemented yet)
-results: Load results of manual nesting and build DBS files
+results: =Load results of manual nesting and build DBS files

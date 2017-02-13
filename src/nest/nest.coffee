@@ -1,38 +1,19 @@
 ###
 Entry point
 ###
-options = getopt require './options'
-params = options argv
+params = require './params'
 
-if params.h or params.length != 1
-  echo """
-    Usage: #{argv0.bn()} [options] path/to/jobname.kol
-
-    Options:
-  """
-  options()
+if params.r
+  require './finish'
   exit()
 
-dbs.kol.counts job = dbs.kol.load kolfile = file params[0]
+if params.t
+  echo "WARNING: T-Flex Nesting not implemented yet :-("
 
-echo "Creating Nestig Factory Job at:", dst = dbs.nf.sandbox()
+# Reading KOL-file
+dbs.kol.counts params.job = dbs.kol.load file params[0]
 
-dbs.nf.write job, dst
-dbs.nf.launch dst.bn()
-echo "Parsing results"
-result = dbs.nf.parse dst, true
-result = dbs.nf.dbs result, job
-dst.rm()
-
-echo "Writing results..."
-for z, i in result
-  postfix = ''
-  if result.length > 1
-    postfix = "#{i + 1}"
-    while postfix.length < "#{result.length}".length
-      postfix = '0' + postfix
-    postfix = '.' + postfix
-  postfix = file "#{kolfile.n()}#{postfix}.dbs"
-    .abs()
-  echo "- #{postfix}"
-  dbs.save z, postfix
+if params.m
+  require './manual'
+else
+  require './launch'

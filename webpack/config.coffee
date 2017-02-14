@@ -24,13 +24,17 @@ values = (map)->
       # coffee above will also apply after this
       test: /[\/\\]tests[.]coffee$/
       loader: require.resolve './glob'
+    yml:
+      test: /[.]ya?ml$/
+      loader: require.resolve './yaml'
+
   noParse: /[\/\\]expect[.]js[\/\\]/
 
 brk = (s)->
   s.split ' '
 
 @resolve =
-  extensions: brk " .js .coffee .litcoffee .coffee.md"
+  extensions: brk " .js .coffee .litcoffee .coffee.md .yml"
   alias:
     self: sources.root
 

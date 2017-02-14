@@ -2,8 +2,7 @@
 SVG output
 ###
 module.exports = (file)->
-  bounds = dbs.bounds file
-  echo """
+  """
 <!DOCTYPE>
 <html>
 <head>
@@ -38,14 +37,7 @@ path:hover {
 </style>
 </head>
 <body>
-<svg height="100%" width="100%" viewBox="#{
-  bounds[0][0]
-  } #{
-  -bounds[1][1]
-  } #{dbs.rect.size(bounds).join ' '}"><g transform = "scale(1, -1)">
 #{dbs.svg file}
-</g>
-</svg>
 </body>
 </html>
   """

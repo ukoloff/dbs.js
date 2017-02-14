@@ -6,7 +6,7 @@ spans = require './spans'
 
 module.exports = (path)->
   svg = spans path, '', (span, n, svg)->
-    if n
+    if svg
       svg += '\n'
     svg += dbs.span.svg span, !n
   if closed path

@@ -1,8 +1,11 @@
 ###
 Stream for BLOBs
 ###
-module.exports = ->
+module.exports = (text)->
   stream = activeX "ADODB.Stream"
-  stream.Type = 1	 # adTypeBinary
+  stream.Type = if text
+    2   # adTypeText
+  else
+    1	# adTypeBinary
   stream.Open()
   stream

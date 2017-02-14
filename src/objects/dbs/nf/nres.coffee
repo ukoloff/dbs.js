@@ -1,5 +1,7 @@
 ###
 Parse nres-file
+
+Returns full DBS: [part, part, part...]
 ###
 module.exports = (file)->
   lines =file.lines true
@@ -28,7 +30,7 @@ module.exports = (file)->
       nodes = Number lines.shift()
       path = while nodes--
         nums lines.shift().split /\s+/
-      close dbs.path.reverse path
+      dbs.path.reverse close path
 
 # sprintf %04d
 num4 = (i)->

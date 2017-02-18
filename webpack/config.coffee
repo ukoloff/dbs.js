@@ -3,6 +3,8 @@ webpack = require 'webpack'
 sources = require './sources'
 ugly = require './ugly'
 
+wrapAt = 108
+
 @entry = sources.entry
 
 @output =
@@ -27,6 +29,9 @@ values = (map)->
     yml:
       test: /[.]ya?ml$/
       loader: require.resolve './yaml'
+    styl:
+      test: /[.]styl$/
+      loader: "#{require.resolve './raw'}?wrap=#{wrapAt}!stylus?compress"
 
   noParse: /[\/\\]expect[.]js[\/\\]/
 
@@ -34,7 +39,7 @@ brk = (s)->
   s.split ' '
 
 @resolve =
-  extensions: brk " .js .coffee .litcoffee .coffee.md .yml"
+  extensions: brk " .js .coffee .litcoffee .coffee.md .yml .styl"
   alias:
     self: sources.root
 
@@ -53,7 +58,7 @@ stringify = (rec)->
 @plugins = values
   ugly: ugly
     output:
-      max_line_len: 128
+      max_line_len: wrapAt
       keep_quoted_props: true
     compress:
       warnings: false

@@ -1,6 +1,7 @@
 ###
 Configuration editor entry point
 ###
-require('self/tools/guard') ->
-  require './config'
-  return
+if window?
+  require './msie'
+else
+  require './wsh'

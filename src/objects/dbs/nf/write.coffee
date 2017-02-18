@@ -9,8 +9,8 @@ module.exports = (job, fldr)->
     TASKNAME:\tSirius
     TIMELIMIT:\t#{config.time}
     TASKTYPE:\tSHEET
-    ITEM2DOMAINDIST:\t#{config.gap}
-    ITEM2ITEMDIST:\t#{config.border}
+    ITEM2DOMAINDIST:\t#{config.border}
+    ITEM2ITEMDIST:\t#{config.gap}
   """
   for z, i in job
     if z.list

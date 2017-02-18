@@ -24,6 +24,9 @@
     "coffee-script": "^1.12.2",
     "expect.js": "^0.3.1",
     "js-yaml": "^3.7.0",
-    "webpack": "^1.14.0"
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.5.0",
+    "webpack": "^1.14.0",
+    "without": "^1.2.2"
   }
 }

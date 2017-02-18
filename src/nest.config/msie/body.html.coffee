@@ -4,84 +4,64 @@ Real HTML body
 module.exports = without ->
   h1 'Параметры раскроя'
 
+  group = (title, content)->
+    fieldset (-> legend title), content
+
+  radio = (options, name, title)->
+    group title, ->
+      for k, v of options
+        if next
+          do br
+        label ->
+          input
+            type: 'radio'
+            name: name
+            value: k
+            checked: k == "#{@[name]}"
+          text ' ', v
+        next = 1
+      return
+  numbers = (options, title)->
+    group title, ->
+      for k, v of options
+        if next
+          do br
+        label v, br, ->
+          input
+            name: k
+            value: @[k]
+            type: 'number'
+            min: 0
+            required: true
+        next = 1
+      return
+
   form -> table -> tr ->
     td ->
-      fieldset ->
-        legend 'Расстояния, мм'
-        label 'Между деталями', br, ->
-          input
-            name: 'gap'
-            type: 'number'
-            min: 0
-            required: true
-        do br
-        label 'До края листа', br, ->
-          input
-            name: 'border'
-            type: 'number'
-            min: 0
-            required: true
-      fieldset ->
-        legend 'Качество раскроя'
-        label ->
-          input
-            type: 'radio'
-            name: 'time'
-            value: 6
-          text ' Быстрый раскрой'
-        do br
-        label ->
-          input
-            type: 'radio'
-            name: 'time'
-            value: 60
-          text ' Стандартный раскрой'
-        do br
-        label ->
-          input
-            type: 'radio'
-            name: 'time'
-            value: 6
-          text ' Качественный раскрой'
+      numbers
+        gap: 'Между деталями'
+        border: 'До края листа'
+        'Расстояния, мм'
+      radio
+        6: 'Быстрый раскрой'
+        60:'Стандартный раскрой'
+        600: 'Качественный раскрой'
+        'time'
+        'Качество раскроя'
     td ->
-      fieldset ->
-        legend 'Допустимые вращения'
-        label ->
-          input
-            type: 'radio'
-            name: 'rotate'
-            value: 0
-          text ' Без поворота'
-        do br
-        label ->
-          input
-            type: 'radio'
-            name: 'rotate'
-            value: 1
-          text ' Произвольное'
-        do br
-        label ->
-          input
-            type: 'radio'
-            name: 'rotate'
-            value: 90
-          text ' На 90 градусов'
-        do br
-        label ->
-          input
-            type: 'radio'
-            name: 'rotate'
-            value: 180
-          text ' На 180 градусов'
-
-      fieldset ->
-        legend 'Зеркальное отражение'
-
+      radio
+        0: 'Без поворота'
+        1: 'Произвольное'
+        90: 'На 90 градусов'
+        180: 'На 180 градусов'
+        'rotate'
+        'Допустимые вращения'
+      group 'Зеркальное отражение', ->
         label ->
           input
             type: 'checkbox'
             name: 'mirror'
-            value: 0
+            checked: !!@mirror
           text ' Допустимо'
 
       p ->

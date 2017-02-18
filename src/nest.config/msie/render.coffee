@@ -1,3 +1,6 @@
+###
+Render form
+###
 wnd.onunload = ->
   echo 'Bye!' if DEBUG
   exit 0
@@ -13,4 +16,4 @@ else
   style.innerHTML = ''
   style.appendChild dom.createTextNode css
 
-dom.body.innerHTML = t()
+dom.body.innerHTML = t require './load'

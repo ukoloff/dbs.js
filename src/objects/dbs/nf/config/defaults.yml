@@ -13,4 +13,7 @@ rotate: 1
 mirror: 1
 
 # Скорость (6, 60, 600)
+# CAT_FAST_SPEED_MODE: 6,
+# CAT_RECOMMENDED_SPEED_MODE: 60
+# CAT_COMPLETE_SPEED_MODE: 600
 time: 6

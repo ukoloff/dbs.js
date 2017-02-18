@@ -1,19 +1,16 @@
 ###
 Write Nesting Factory job
 ###
+config = require './config'
 module.exports = (job, fldr)->
   task = file fldr, 'nest.task'
     .create()
-  # TIMELIMIT:
-  # CAT_FAST_SPEED_MODE: 6,
-  # CAT_RECOMMENDED_SPEED_MODE: 60
-  # CAT_COMPLETE_SPEED_MODE: 600
   task.WriteLine """
     TASKNAME:\tSirius
-    TIMELIMIT:\t6
+    TIMELIMIT:\t#{config.time}
     TASKTYPE:\tSHEET
-    ITEM2DOMAINDIST:\t5
-    ITEM2ITEMDIST:\t5
+    ITEM2DOMAINDIST:\t#{config.gap}
+    ITEM2ITEMDIST:\t#{config.border}
   """
   for z, i in job
     if z.list

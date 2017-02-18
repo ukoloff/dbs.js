@@ -5,6 +5,7 @@ http://www.dostips.com/forum/viewtopic.php?p=37780#p37780
 fs = require "fs"
 path = require 'path'
 
+iconv = require "iconv-lite"
 yaml = require 'js-yaml'
 
 ini = require '../package'
@@ -28,7 +29,7 @@ module.exports = ->
           if bat = yml[q]
             break
 
-        fs.writeFile path.format(x), """
+        fs.writeFile path.format(x), toANSI """
           #{prolog}#{bat.before or ''}#{sword bat.command}"%~f0"#{word bat.args}
           #{bat.after or ''}#{yml[':epilog']}#{reexport debug, z.source()}
 
@@ -66,3 +67,6 @@ reexport = (debug, text)->
     text
     .replace /[.]exports\b/g, '.X'
     .replace /exports/, 'X'       # First: module = {exports: {}, ...}
+
+toANSI = (s)->
+  iconv.encode s, 'cp1251'

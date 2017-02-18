@@ -2,4 +2,4 @@
 Real HTML body
 ###
 module.exports = without ->
-  text 'Hello, world!'
+  text 'Здравствуй, мир!'

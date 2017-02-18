@@ -1,19 +1,16 @@
 ###
 Write Nesting Factory job
 ###
+config = require './config'
 module.exports = (job, fldr)->
   task = file fldr, 'nest.task'
     .create()
-  # TIMELIMIT:
-  # CAT_FAST_SPEED_MODE: 6,
-  # CAT_RECOMMENDED_SPEED_MODE: 60
-  # CAT_COMPLETE_SPEED_MODE: 600
   task.WriteLine """
     TASKNAME:\tSirius
-    TIMELIMIT:\t6
+    TIMELIMIT:\t#{config.time}
     TASKTYPE:\tSHEET
-    ITEM2DOMAINDIST:\t5
-    ITEM2ITEMDIST:\t5
+    ITEM2DOMAINDIST:\t#{config.gap}
+    ITEM2ITEMDIST:\t#{config.border}
   """
   for z, i in job
     if z.list
@@ -25,12 +22,23 @@ module.exports = (job, fldr)->
       task.WriteLine """
         ITEMFILE:\t#{i}.item
         ITEMQUANT:\t#{z.count}
-        ROTATE:\t1
-        ROTSTEP:\tFREE
-        REFLECT:\t1
+        ROTATE:\t#{if config.rotate then 1 else 0}
+        ROTSTEP:\t#{rotStep config.rotate}
+        REFLECT:\t#{if config.mirror then 1 else 0}
       """
     geo = file fldr, "#{i}.item"
       .create()
     geo.WriteLine "ITEMNAME:\tgeo#{i}"
     geo.Write dbs.algomate z.geo
   return
+
+rotStep = (step)->
+  switch step
+    when 0
+      'NO'
+    when 90
+      'PI/2'
+    when 180
+      'PI'
+    else
+      'FREE'

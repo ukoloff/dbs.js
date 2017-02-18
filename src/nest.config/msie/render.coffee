@@ -16,5 +16,6 @@ else
   style.innerHTML = ''
   style.appendChild dom.createTextNode css
 
-dom.body.innerHTML = t require './load'
+dbs.nf.config.load require './storage'
+dom.body.innerHTML = t dbs.nf.config
 require './listen'

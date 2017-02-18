@@ -1,0 +1,25 @@
+body
+  margin: 0
+
+svg
+  box-sizing: border-box
+
+path
+  fill: lime
+  stroke: red
+  stroke-width: 0.3%
+  fill-rule: nonzero
+  stroke-linejoin: round
+
+  &:hover
+    fill: yellow
+    stroke-dasharray: 1%
+    animation: dash 1s linear infinite
+
+vendors = official
+
+@keyframes dash
+  from
+    stroke-dashoffset: 0%
+  to
+    stroke-dashoffset: -2%

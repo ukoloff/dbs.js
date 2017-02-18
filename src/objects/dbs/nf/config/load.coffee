@@ -15,5 +15,12 @@ module.exports = (file)->
 
       unless config[k = trim k]?
         continue
-      config[k] = trim v
+      config[k] = numerize v
     return
+
+numerize = (v)->
+  v = trim v
+  if /^\d+$/.test v
+    Number v
+  else
+    v

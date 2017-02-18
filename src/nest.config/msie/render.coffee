@@ -17,3 +17,4 @@ else
   style.appendChild dom.createTextNode css
 
 dom.body.innerHTML = t require './load'
+require './listen'

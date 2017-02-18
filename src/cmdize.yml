@@ -30,3 +30,11 @@ nest:
   <<: *cli
   after: |
     pause
+
+nest.config:
+  <<: *gui
+  args:
+
+nest.config:debug:
+  <<: *cli
+  args:

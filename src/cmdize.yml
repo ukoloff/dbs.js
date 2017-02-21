@@ -25,3 +25,16 @@ testing:
   <<: *cli
   after: |
     exit %ERRORLEVEL%
+
+nest:
+  <<: *cli
+  after: |
+    pause
+
+nest.config:
+  <<: *gui
+  args:
+
+nest.config:debug:
+  <<: *cli
+  args:

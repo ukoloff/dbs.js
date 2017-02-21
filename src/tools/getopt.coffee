@@ -69,7 +69,7 @@ module.exports = (definitions)->
       else if /^-\w/.test arg
         arg = arg.substring 1
         while arg.length
-          unless opt = shorts[c = arg.charAt 0]
+          unless opt = shorts[c = arg.charAt(0).toLowerCase()]
             throw Error "Unknown option: -#{c}"
           arg = arg.substring 1
           if opt.val

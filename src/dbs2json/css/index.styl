@@ -1,0 +1,27 @@
+vendors = official
+stroke-width = 0.2%
+stroke-length = 1%
+body
+  margin: 0
+
+svg
+  box-sizing: border-box
+
+path
+  fill: lime
+  stroke: red
+  stroke-width: stroke-width
+  fill-rule: nonzero
+  stroke-linejoin: round
+
+  &:hover
+    fill: yellow
+    stroke-dasharray: stroke-length
+    animation: dash 1s linear infinite
+
+
+@keyframes dash
+  from
+    stroke-dashoffset: 0%
+  to
+    stroke-dashoffset: -2 * stroke-length

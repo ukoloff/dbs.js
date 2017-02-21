@@ -7,7 +7,7 @@ r26 = require './r26'
 r27 = require './r27'
 
 module.exports = (writer, part)->
-  me = writer.seq + part.paths.length
+  me = writer.seq + part.paths.length + 1
   i = 0
   for path, n in part.paths
     r1 writer, (if n then me else -me), path

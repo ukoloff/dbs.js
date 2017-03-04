@@ -1,0 +1,4 @@
+# Command line options
+help: Show this help
+node: =Host (default is .)
+all:  List all adapters (not only physical ones)

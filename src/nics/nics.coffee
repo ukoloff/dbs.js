@@ -8,7 +8,7 @@ unless /^[-.\w]+$/.test host = params.n or '.'
   exit()
 
 unless /\D/.test host
-  host = "MR19-M117-W-#{host}"
+  host = "MR19-M117-W#{host}"
 
 echo "Connecting to:", host
 wmi = GetObject "winmgmts://#{host}/root/CIMv2"

@@ -24,6 +24,7 @@
     "coffee-script": "^1.12.2",
     "expect.js": "^0.3.1",
     "iconv-lite": "^0.4.15",
+    "ieee754": "^1.1.8",
     "js-yaml": "^3.7.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.5.0",

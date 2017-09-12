@@ -1,0 +1,5 @@
+# Command line options
+help: Show this help
+output: =Save result to file/folder
+force: Overwrite existing file
+stdin: Read from stdin

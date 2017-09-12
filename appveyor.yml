@@ -1,7 +1,7 @@
 version: 1.0.{build}-{branch}
 
-cache:
-  - node_modules
+# cache:
+#   - node_modules
 
 install:
   - npm install

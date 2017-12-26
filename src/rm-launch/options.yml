@@ -1,0 +1,3 @@
+# Command line options
+help: Show this help
+log:  Log everything to %TEMP%\rm-launch.log

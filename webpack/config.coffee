@@ -33,7 +33,9 @@ values = (map)->
       test: /[.]styl$/
       loader: "#{require.resolve './raw'}?wrap=#{wrapAt}!stylus?compress"
 
-  noParse: /[\/\\]expect[.]js[\/\\]/
+  noParse: values
+    expect: /[\/\\]expect[.]js[\/\\]/
+    min: /[.]min[.]/
 
 brk = (s)->
   s.split ' '

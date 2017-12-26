@@ -20,4 +20,16 @@ if params.l
   params.l = sh.ExpandEnvironmentStrings params.l
 
   log = fso.OpenTextFile params.l, 8, true
-  log.WriteLine "#{argv0.n()} started: #{new Date}"
+  log.WriteLine """
+
+      #{argv0.n()} started: #{new Date}
+    """
+  log.Close()
+
+  sh.Run """
+    "#{argv0}" #{params[0]} >>#{params.l} 2>&1
+  """, 0, false
+  exit()
+
+echo "Loading:", params[0]
+z = dbs.load params[0]

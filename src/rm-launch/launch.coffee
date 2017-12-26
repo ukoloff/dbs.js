@@ -33,10 +33,29 @@ if params.l
   exit()
 
 echo "Loading:", params[0]
-echo "Full path:", fso.GetAbsolutePathName params[0]
+echo "Full path:", file(params[0]).abs()
 z = dbs.load params[0]
 
 echo "Found:", z.length, 'part(s)'
-echo "Exporting:", out = params[0] + '.json'
-out = fso.CreateTextFile out, true
-out.WriteLine dbs.json z, true
+echo "Exporting:", out = file params[0] + '.json'
+out.save dbs.json z, true
+
+findBin = (bin)->
+  echo 'Looking for:', bin
+  top = folder '.'
+  seen = {}
+  until seen[top = top.abs()]
+    seen[top] = true
+    if (exe = file top, bin).y()
+      return exe
+    top = top.up()
+  throw Error "Not found!"
+
+bin = findBin 'RouteManager.exe'
+echo "Found:", bin
+
+echo "Running:", bin.bn(), out.bn()
+
+sh.Run """
+  "#{bin}" "#{out}
+""", 1, false

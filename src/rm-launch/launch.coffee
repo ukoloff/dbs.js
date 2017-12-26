@@ -23,6 +23,7 @@ if params.l
   log.WriteLine """
 
       #{argv0.n()} started: #{new Date}
+      Arguments: #{argv.join ' '}
     """
   log.Close()
 
@@ -32,4 +33,10 @@ if params.l
   exit()
 
 echo "Loading:", params[0]
+echo "Full path:", fso.GetAbsolutePathName params[0]
 z = dbs.load params[0]
+
+echo "Found:", z.length, 'part(s)'
+echo "Exporting:", out = params[0] + '.json'
+out = fso.CreateTextFile out, true
+out.WriteLine dbs.json z, true

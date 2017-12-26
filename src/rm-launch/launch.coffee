@@ -7,7 +7,7 @@ params = options argv
 
 if params.h or params.length != 1
   echo """
-    Usage: #{argv0.bn()} [options] path/to/file.dbs
+    Usage: #{argv0.bn()} [options] path/to/dbs-file
 
     Options:
   """
@@ -33,11 +33,11 @@ if params.l
   exit()
 
 echo "Loading:", params[0]
-echo "Full path:", file(params[0]).abs()
-z = dbs.load params[0]
+echo "Full path:", dbsrc = file(params[0]+'.dbs').abs()
+z = dbs.load dbsrc
 
 echo "Found:", z.length, 'part(s)'
-echo "Exporting:", out = file params[0] + '.json'
+echo "Exporting:", out = file params[0] + '.dbs.json'
 out.save dbs.json z, true
 
 findBin = (bin)->

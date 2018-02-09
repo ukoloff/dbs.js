@@ -31,7 +31,7 @@ values = (map)->
       loader: require.resolve './yaml'
     styl:
       test: /[.]styl$/
-      loader: "#{require.resolve './raw'}?wrap=#{wrapAt}!stylus?compress"
+      loader: "#{require.resolve './raw'}?wrap=#{wrapAt}!stylus"
 
   noParse: values
     expect: /[\/\\]expect[.]js[\/\\]/

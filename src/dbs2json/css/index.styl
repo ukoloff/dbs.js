@@ -1,5 +1,5 @@
 vendors = official
-stroke-width = 0.2%
+stroke-width = 0.16%
 stroke-length = 1%
 body
   margin: 0
@@ -8,17 +8,22 @@ svg
   box-sizing: border-box
 
 path
-  fill: lime
-  stroke: red
+  fill: green
+  stroke: yellow
   stroke-width: stroke-width
   fill-rule: nonzero
   stroke-linejoin: round
 
   &:hover
-    fill: yellow
+    fill: lime
     stroke-dasharray: stroke-length
     animation: dash 1s linear infinite
 
+  &:first-child
+    fill: navy
+
+    &:hover
+      fill: blue
 
 @keyframes dash
   from

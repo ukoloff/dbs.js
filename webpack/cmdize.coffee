@@ -29,11 +29,13 @@ module.exports = ->
           if bat = yml[q]
             break
 
-        fs.writeFile path.format(x), toANSI """
+        fs.writeFile path.format(x),
+          toANSI """
           #{prolog}#{bat.before or ''}#{sword bat.command}"%~f0"#{word bat.args}
           #{bat.after or ''}#{yml[':epilog']}#{reexport debug, z.source()}
 
-          """, ->
+          """
+          ->
       return
 
 word = (s)->

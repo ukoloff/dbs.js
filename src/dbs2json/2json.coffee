@@ -2,6 +2,7 @@
 Entry point
 ###
 svg = require './svg'
+edges = require './edges'
 options = getopt require './options'
 params = options argv
 
@@ -41,6 +42,8 @@ if params.y
   out 'yml', dbs.yaml z
 if params.d
   out 'dxf', dbs.dxf z
+if params.e
+  out 'edges', edges z
 if params.a
   out 'item', dbs.algomate z
 if params.s

@@ -1,6 +1,7 @@
 vendors = official
 stroke-width = 0.16%
 stroke-length = 1%
+
 body
   margin: 0
 
@@ -8,22 +9,29 @@ svg
   box-sizing: border-box
 
 path
-  fill: green
-  stroke: red
+  fill: url(#diagonalHatch)
+  stroke: black
   stroke-width: stroke-width
   fill-rule: nonzero
   stroke-linejoin: round
 
   &:hover
-    fill: lime
+    fill: blue
     stroke-dasharray: stroke-length
     animation: dash 1s linear infinite
 
-  &:first-child
-    fill: navy
+  &:first-of-type
+    fill: url(#antiDiagonalHatch)
 
     &:hover
-      fill: blue
+      fill: lime
+
+pattern rect
+  stroke: none
+
+#diagonalHatch
+  stroke: black
+  fill: silver
 
 @keyframes dash
   from

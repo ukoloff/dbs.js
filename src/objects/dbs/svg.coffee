@@ -3,7 +3,7 @@ Output as SVG
 ###
 bounds = require './bounds'
 
-module.exports = (file)->
+module.exports = (file, defs)->
   b = bounds file
   b = [b[0][0], -b[1][1]].concat dbs.rect.size b
   svg = ''
@@ -12,7 +12,7 @@ module.exports = (file)->
       svg += '\n'
     svg += dbs.part.svg part
   """
-  <svg height="100%" width="100%" viewBox="#{b.join ' '}"><g transform = "scale(1, -1)">
+  <svg height="100%" width="100%" viewBox="#{b.join ' '}"><g transform = "scale(1, -1)">#{defs or ''}
   #{svg}
   </g></svg>
   """

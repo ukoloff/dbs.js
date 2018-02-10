@@ -3,7 +3,7 @@ SVG output
 ###
 module.exports = (file)->
   """
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
 <style>

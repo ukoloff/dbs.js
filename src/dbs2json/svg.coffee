@@ -3,7 +3,7 @@ SVG output
 ###
 module.exports = (file)->
   """
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
 <style>
@@ -11,7 +11,7 @@ module.exports = (file)->
 </style>
 </head>
 <body>
-#{dbs.svg file}
+#{dbs.svg file, require './svg.defs'}
 </body>
 </html>
   """

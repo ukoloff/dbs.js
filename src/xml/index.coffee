@@ -3,8 +3,12 @@
 #
 xml = require './xml'
 tfnest = require './tfnest'
+build = require './build'
 
 data = xml 'tflex.xml'
 
-tfnest data
-# echo yaml.safeDump data
+nested = tfnest data
+result = build nested
+
+for r in result
+  echo dbs.json r

@@ -37,7 +37,10 @@ partList = (node)->
     part =
       partid: "#{attrs.Name.children[0]}"
       paths: parsePaths fetchKey "#{prefix}Profile", attrs
-    echo dbs.part.json part
+      nest:
+        id: parseFloat attrs.ID
+        count: parseFloat attrs.Count
+        disable: parseBool attrs.Exclude
 
 parsePaths = (node)->
   for contour in fetchKey('Contours', childrenHash node).children

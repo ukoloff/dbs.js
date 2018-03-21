@@ -4,8 +4,10 @@
 module.exports = (data)->
   assertName 'Project', data
   children = childrenHash data
-  parts = partList children.Parts
-  lists = partList children.Sheets
+
+  parts: partList children.Parts
+  lists: partList children.Sheets
+  results: parseResults children.Results
 
 assertName = (name, node)->
   if node.name != name
@@ -67,7 +69,6 @@ figureContour = (node)->
     result.push.apply result, z
   result
 
-
 circleContour = (node)->
   node = childrenHash node
   center = parseXY node.Center
@@ -77,6 +78,9 @@ circleContour = (node)->
     [center[0] + radius, center[1], -1]
     [center[0] - radius, center[1], 0],
   ]
+
+parseBool = (node)->
+  !!node.children[0]
 
 parseFloat = (node)->
   Number node.children[0]
@@ -94,3 +98,33 @@ parseArc = (node)->
   angle = parseFloat fetchKey 'Angle', childrenHash node
   line[0][2] = Math.tan angle / 4
   line
+
+parseResults = (node)->
+  if !node
+    return []
+
+  inner = fetchKey 'NestingResult', childrenHash node
+  layouts = fetchKey 'Layouts', childrenHash inner
+  for layout in layouts.children
+    parseLayout layout
+
+parseLayout = (node)->
+  assertName 'SheetLayout', node
+  children = childrenHash node
+
+  list: parseFloat fetchKey 'SheetID', children
+  parts: parseCopies children.PartPositions
+
+parseCopies = (node)->
+  for part in node.children
+    assertName 'PartPosition', part
+    part = childrenHash part
+
+    part: parseFloat part.PartID
+    list: parseFloat part.SheetID
+    angle: if parseBool part.Rotated
+        parseFloat part.AngleDeg
+      else
+        0
+    delta: parseXY part.Position
+    rev: parseBool part.Inverted

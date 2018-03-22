@@ -10,8 +10,14 @@ defaults = (path)->
   else
     path
 
-if !(f = folder defaults params.r).y()
-  echo "Not a folder:", f.abs()
-  exit()
+f = folder defaults params.r
+  .abs()
 
-save dbs.nf.parse f
+save if f.y()
+    echo "Loading Nesting Factory result:", f
+    dbs.nf.parse f
+  else if (file f).y()
+    echo "Loading TFNesting result:", f
+    dbs.tfnest.dbs dbs.tfnest.load "#{f}"
+  else
+    throw Error "File/folder not found: #{f}"

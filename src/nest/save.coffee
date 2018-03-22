@@ -4,6 +4,7 @@ Write DBS
 params = require './params'
 
 defaults = (path)->
+  echo "PATH", path
   if 'string' != typeof path
     '.'
   else
@@ -12,8 +13,8 @@ defaults = (path)->
 module.exports = (result)->
   echo "Writing results..."
 
-  dirname = folder params.r or params[0]
-  basename = dirname.n()
+  dirname = folder true != params.r and params.r or params[0]
+  basename = dirname.abs().n()
   unless dirname.y()
     dirname = dirname.up()
 

@@ -17,25 +17,19 @@ module.exports = (name)->
 
 node = (xmlNode)->
   if 3 == xmlNode.nodeType
-    switch result = xmlNode.text
-      when 'true'
-        return true
-      when 'false'
-        return false
-    return if /^[+-]?\d+([.]\d*)?(e[+-]?\d+)?$/i.test result
-      Number result
-    else
-      result
+    return xmlNode.text
 
-  result =
-    name: xmlNode.nodeName
-    base: xmlNode.baseName
-    attr: attr = {}
-    children: children = []
+  attr = {}
   each xmlNode.attributes, (A)->
     attr[A.name] = A.value
+
+  children = []
   if xmlNode.childNodes.length
     each xmlNode.childNodes, (child)->
       children.push node child
 
-  result
+  name: xmlNode.nodeName
+  base: xmlNode.baseName
+  attr: attr
+  children: children
+

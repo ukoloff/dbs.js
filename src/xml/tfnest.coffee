@@ -52,7 +52,7 @@ parsePaths = (node)->
         z = circleContour contour
       else
         throw Error "Invalid contour type: #{type}"
-    if /^P/i.test childrenHash(node).Orientation
+    if /^N/i.test childrenHash(contour).Orientation.children[0]
       z = dbs.path.reverse z
     z
 
@@ -83,7 +83,12 @@ circleContour = (node)->
   ]
 
 parseBool = (node)->
-  !!node.children[0]
+  unless value = node.children[0]
+    return false
+  switch value.toLowerCase().replace /^\s+|\s+$/g
+    when 'false', '0'
+      return false
+  true
 
 parseFloat = (node)->
   Number node.children[0]

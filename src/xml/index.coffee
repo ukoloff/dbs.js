@@ -1,14 +1,6 @@
 #
 # Try to parse XML
 #
-xml = require './xml'
-tfnest = require './tfnest'
-build = require './build'
 
-data = xml 'tflex.xml'
-
-nested = tfnest data
-result = build nested
-
-for r in result
+for r in dbs.tfnest.dbs dbs.tfnest.load 'tflex.xml'
   echo dbs.json r

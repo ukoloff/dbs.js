@@ -1,17 +1,14 @@
 #
 # Read XML & convert to JSON
 #
-module.exports = (name)->
+module.exports = (filename)->
   parser = activeX "Msxml2.DOMDocument"
   parser.async = false
 
-  parser.load 'tflex.xml'
+  parser.load filename
 
-  # echo "code =", parser.parseError.errorCode
   if parser.parseError.errorCode
     throw Error "XML Error: #{parser.parseError.errorCode}"
-
-  # echo parser.xml
 
   node parser.documentElement
 

@@ -36,7 +36,10 @@ partList = (node)->
     attrs = childrenHash child
     part =
       partid: "#{attrs.Name.children[0]}"
-      paths: parsePaths fetchKey "#{prefix}Profile", attrs
+      paths: if child.attr['xsi:type'] == 'RectangularSheet'
+          [rectContour child]
+        else
+          parsePaths fetchKey "#{prefix}Profile", attrs
       nest:
         id: parseFloat attrs.ID
         count: parseFloat attrs.Count
@@ -45,11 +48,13 @@ partList = (node)->
 parsePaths = (node)->
   for contour in fetchKey('Contours', childrenHash node).children
     assertName 'Contour', contour
-    switch type = contour.attr['xsi:type']
+    z = switch type = contour.attr['xsi:type']
       when 'FigureContour'
-        z = figureContour contour
+        figureContour contour
       when 'CircleContour'
-        z = circleContour contour
+        circleContour contour
+      when 'RectangularContour'
+        rectContour contour
       else
         throw Error "Invalid contour type: #{type}"
     if /^N/i.test childrenHash(contour).Orientation.children[0]
@@ -80,6 +85,18 @@ circleContour = (node)->
     [center[0] - radius, center[1], -1],
     [center[0] + radius, center[1], -1]
     [center[0] - radius, center[1], 0],
+  ]
+
+rectContour = (node)->
+  node = childrenHash node
+  W = parseFloat fetchKey 'Width', node
+  L = parseFloat fetchKey 'Length', node
+  [
+    [0, 0, 0],
+    [0, L, 0],
+    [W, L, 0],
+    [W, 0, 0],
+    [0, 0, 0]
   ]
 
 parseBool = (node)->

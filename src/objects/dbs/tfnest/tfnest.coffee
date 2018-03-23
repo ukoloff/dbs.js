@@ -152,4 +152,4 @@ parseCopies = (node)->
       else
         0
     delta: parseXY part.Position
-    rev: parseBool part.Inverted
+    mirror: parseBool part.Inverted

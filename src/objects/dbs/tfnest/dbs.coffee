@@ -16,5 +16,7 @@ module.exports = (data)->
       o2t = dbs.o2.translation part.delta
       o2r = dbs.o2.ccw part.angle
       o2full = dbs.o2.merge o2t, o2r
+      if part.mirror
+        o2full = dbs.o2.merge o2full, dbs.o2.antix()
       nesting.push dbs.part.o2 parts[part.part], o2full
     nesting

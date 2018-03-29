@@ -13,9 +13,15 @@ htmlize = (s)->
 
 spaces = (n)->
   result = ''
-  while n--
-    result += ' '
-  result
+  pow = ' '
+  loop
+    if n & 1
+      result += pow
+      n--
+    unless n
+      return result
+    n >>= 1
+    pow += pow
 
 attributes = (rec, prefix = '')->
   result = ''
@@ -29,6 +35,13 @@ attributes = (rec, prefix = '')->
 module.exports = (pretty=true)->
   result = "<?xml#{attributes version: '1.0'}?>"
   margin = if pretty then "\n" else ""
+  if 'string' != typeof pretty
+    pretty = if 'number' == typeof pretty
+      spaces pretty
+    else if pretty
+      '  '
+    else
+      ''
   tags = 0
 
   xml: -> result
@@ -49,14 +62,7 @@ module.exports = (pretty=true)->
 
     saveTags = tags
     saveMargin = margin
-    margin += if 'string' == typeof pretty
-      pretty
-    else if 'number' == typeof pretty
-      spaces pretty
-    else if pretty
-      '  '
-    else
-      ''
+    margin += pretty
 
     try
       for c in children when c?

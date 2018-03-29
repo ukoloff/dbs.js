@@ -7,7 +7,7 @@ htmlEntities =
   '>': '&gt;'
   '"': '&quot;'
 
-h = (s)->
+htmlize = (s)->
   "#{s}".replace /[&<>"]/g, (e)->
     htmlEntities[e]
 
@@ -17,8 +17,17 @@ spaces = (n)->
     result += ' '
   result
 
+attributes = (rec, prefix = '')->
+  result = ''
+  for k, v of rec when v? and false != v
+    result += if 'object' == typeof v
+      attributes v, "#{prefix}#{k}:"
+    else
+      """ #{htmlize prefix + k}="#{htmlize v}"#{}"""
+  result
+
 module.exports = (pretty=true)->
-  result = '<?xml version="1.0"?>'
+  result = "<?xml#{attributes version: '1.0'}?>"
   margin = if pretty then "\n" else ""
   tags = 0
 
@@ -26,12 +35,11 @@ module.exports = (pretty=true)->
   tag: (name, attrs)->
     tags++
     children = [].slice.call arguments, 1
-    result += "#{margin}<#{h name}"
+    result += "#{margin}<#{htmlize name}"
 
     if 'object' == typeof attrs
+      result += attributes attrs
       children.shift()
-      for k, v of attrs when v? and false != v
-        result += """ #{h k}="#{h v}"#{}"""
 
     unless children.length
       result += "/>"
@@ -55,11 +63,11 @@ module.exports = (pretty=true)->
         if 'function' == typeof c
           do c
         else
-          result += h c
+          result += htmlize c
     finally
       margin = saveMargin
       if pretty and saveTags != tags
         result += margin
-      result += "</#{h name}>"
+      result += "</#{htmlize name}>"
 
     return

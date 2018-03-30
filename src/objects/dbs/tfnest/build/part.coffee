@@ -21,6 +21,11 @@ module.exports = (xml, part, asSheet, extra)->
       xml.tag 'FilePath'
       xml.tag 'HatchID', 0
       xml.tag 'IsLinearPart', false
+      unless extra
+        return
+      for k, v of extra
+        xml.tag k, v
+      return
 
 profile = (xml, tag, part)->
   xml.tag "#{tag}Profile", ->

@@ -4,6 +4,7 @@ Save Job for manual nesting
 params = require './params'
 
 dirname = file params[0]
+  .abs()
 basename = dirname.n()
 dirname = dirname.up()
 
@@ -27,6 +28,6 @@ Nesting Job saved to: #{dirname}
 
 Launch CatUI, nest it, then run:
 
-#{argv0.bn()} "#{dirname}"
+#{argv0.bn()} -r "#{dirname}"
 
 """

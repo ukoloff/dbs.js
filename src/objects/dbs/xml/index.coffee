@@ -55,7 +55,7 @@ module.exports = (pretty=true)->
       children.shift()
 
     unless children.length
-      result += "/>"
+      result += " />"
       return
 
     result += ">"

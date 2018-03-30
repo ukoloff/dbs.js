@@ -16,5 +16,5 @@ module.exports = (xml, span)->
 
 point = (xml, tag, point)->
   xml.tag tag, ->
-    xml.tag 'X', point[x]
+    xml.tag 'X', point[0]
     xml.tag 'Y', point[1]

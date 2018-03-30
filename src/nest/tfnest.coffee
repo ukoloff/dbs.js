@@ -19,17 +19,11 @@ if !params.f and output.y()
   echo "File exists:", output
   exit()
 
-echo "Would save to:", output
+xml = dbs.xml()
+dbs.tfnest.build.kol xml, params.job
 
-###
-dbs.nf.write params.job, dirname
+echo "Wrinting:", output
 
-echo """
-Nesting Job saved to: #{dirname}
+output.save xml.xml()
 
-Launch CatUI, nest it, then run:
-
-#{argv0.bn()} -r "#{dirname}"
-
-"""
-###
+echo "Done!"

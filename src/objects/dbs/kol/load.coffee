@@ -2,11 +2,6 @@
 Read Job in .kol format
 ###
 module.exports = (f)->
-  unless f.y()
-    throw Error "File <#{f.bn()}> not found!"
-
-  echo 'Reading:', f
-
   for s in f.lines true
     z = splitZ s, 2
     path: path = file z[0] + '.dbs'

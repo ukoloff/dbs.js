@@ -43,4 +43,16 @@ module.exports = (result)->
       postfix.save dbs.json z, true
     else
       dbs.save z, postfix
+
+  # Dump usage coefficient(s)
+  echo "\nMaterial utilisation factor(s):"
+  for z, i in result
+    ratio = 100 * dbs.ratio z
+    ratioFixed = 100 * dbs.ratio.fixed z
+    echo  "#{i+1}.\t#{ratio.toFixed 3}%#{if ratio != ratioFixed
+        "\t// #{ratioFixed.toFixed 3}%"
+      else
+        ''
+    }"
+
   return

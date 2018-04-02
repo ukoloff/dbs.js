@@ -1,5 +1,5 @@
 #
-# Build DBS from TFNesting
+# Build DBS from TFNesting (nested .tfnesting -> [*.dbs])
 #
 module.exports = (data)->
   parts = {}

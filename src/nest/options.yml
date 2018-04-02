@@ -1,8 +1,10 @@
 # Command line options
 help: Show this help
-output: =Save result to folder
+output: =Save result to file/folder
 force: Ovewrite file(s)/folder if exist(s)
 manual: Manual nesting - just create data file(s)
 algomate: Nest with Algomate's Nesting Factory (default)
-tflex: Nest with T-Flex Nesting (not implemented yet)
+tflex: Save as T-Flex Nesting job format (.tfnesting)
+ncl: Save as NCL/Sirius job format (folder/file.kol)
 results: =Load results of manual nesting and build DBS files
+json: Save results as .json(s) instead of .dbs(s)

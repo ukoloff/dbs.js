@@ -1,5 +1,5 @@
 #
-# Build XML for nesting job (.kol-file)
+# Build XML for nesting job (.kol -> .tfnesting)
 #
 partXML = require './part'
 

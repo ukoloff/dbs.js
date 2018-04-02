@@ -1,10 +1,9 @@
 ###
-Write DBS
+Write .dbs/.json(s) after nesting
 ###
 params = require './params'
 
 defaults = (path)->
-  echo "PATH", path
   if 'string' != typeof path
     '.'
   else
@@ -23,6 +22,10 @@ module.exports = (result)->
       echo "Not a folder:", dirname.abs()
       exit()
 
+  ext = '.dbs'
+  if params.j
+    ext += '.json'
+
   for z, i in result
     postfix = ''
     if result.length > 1
@@ -30,11 +33,14 @@ module.exports = (result)->
       while postfix.length < "#{result.length}".length
         postfix = '0' + postfix
       postfix = '.' + postfix
-    postfix = file dirname, "#{basename}#{postfix}.dbs"
+    postfix = file dirname, "#{basename}#{postfix}#{ext}"
       .abs()
     if !params.f and postfix.y()
       echo "Skipping existing:", postfix
       continue
     echo "-", postfix
-    dbs.save z, postfix
+    if params.j
+      postfix.save dbs.json z, true
+    else
+      dbs.save z, postfix
   return

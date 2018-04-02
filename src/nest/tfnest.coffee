@@ -22,7 +22,7 @@ if !params.f and output.y()
 xml = dbs.xml()
 dbs.tfnest.build.kol xml, params.job
 
-echo "Wrinting:", output
+echo "Writing:", output
 
 output.save xml.xml()
 

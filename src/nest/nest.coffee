@@ -31,6 +31,8 @@ dbs.nf.config.load file argv0.up(), "#{argv0.n()}.config"
 
 if params.t
   require './tfnest'
+else if params.n
+  require './ncl'
 else if params.m
   require './manual'
 else

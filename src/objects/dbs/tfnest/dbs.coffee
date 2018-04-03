@@ -5,9 +5,9 @@ module.exports = (data)->
   parts = {}
   lists = {}
 
-  for part in data.lists when not part.nest.disabled
+  for part in data.lists
     lists[part.nest.id] = part
-  for part in data.parts when not part.nest.disabled
+  for part in data.parts
     parts[part.nest.id] = part
 
   for sheet in data.results

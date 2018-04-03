@@ -25,6 +25,9 @@ childrenHash = (node)->
       result[child.name] = child
   result
 
+asciiize = (s)->
+  "#{s or ''}".replace /[^\x21-\x7F]+/g, '#'
+
 partList = (node)->
   if !node
     return []
@@ -35,7 +38,7 @@ partList = (node)->
 
     attrs = childrenHash child
     part =
-      partid: "#{attrs.Name.children[0]}"
+      partid: asciiize(attrs.Name?.children?[0]) or "#{prefix.slice 0, 1}##{parseFloat attrs.ID}"
       paths: if child.attr['xsi:type'] == 'RectangularSheet'
           [rectContour child]
         else

@@ -21,37 +21,41 @@ module.exports = (dxf)->
     pair = EOF
 
   circle = ->
+    next()
     echo 'CIRCLE'
 
   newPolyline = ->
+    next()
     echo 'LWPOLYLINE'
 
   oldPolyline = ->
+    next()
     echo 'POLYLINE'
 
   next()
-  until done
+  loop
     switch pair.id
       when 0
         switch pair.val
           when 'EOF'
             done = true
+            break
           when 'CIRCLE'
-            next()
             circle()
             continue
           when 'POLYLINE'
-            next()
             oldPolyline()
             continue
       when 100
         switch pair.val
           when 'AcDbCircle'
-            next()
             circle()
             continue
           when 'AcDbPolyline'
-            next()
             newPolyline()
             continue
+    if done
+      break
     next()
+
+  paths: paths

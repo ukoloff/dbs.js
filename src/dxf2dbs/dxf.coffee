@@ -9,3 +9,10 @@ if params.h or params.length != 1
   """
   options()
   exit()
+
+echo "Reading", params[0]
+dxf = file params[0]
+  .open 1
+
+parser = require './parser'
+parser dxf

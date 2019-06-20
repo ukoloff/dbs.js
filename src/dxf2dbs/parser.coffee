@@ -21,8 +21,23 @@ module.exports = (dxf)->
     pair = EOF
 
   circle = ->
-    next()
-    echo 'CIRCLE'
+    until done
+      next()
+      switch pair.id
+        when 0
+          done = true
+        when 10
+          X = +pair.val
+        when 20
+          Y = +pair.val
+        when 40
+          R = +pair.val
+    paths.push ppp = [
+      [X - R, Y, -1],
+      [X + R, Y, -1],
+      [X - R, Y, 0]
+    ]
+    return
 
   newPolyline = ->
     next()

@@ -11,8 +11,9 @@ if params.h or params.length != 1
   exit()
 
 echo "Reading", params[0]
-dxf = file params[0]
-  .open 1
-
+source = file params[0]
 parser = require './parser'
-parser dxf
+part = parser source.open 1
+part.partid = source.n()
+res = [part]
+echo dbs.json res, true

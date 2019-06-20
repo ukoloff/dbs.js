@@ -32,7 +32,7 @@ module.exports = (dxf)->
           Y = +pair.val
         when 40
           R = +pair.val
-    paths.push ppp = [
+    paths.push [
       [X - R, Y, -1],
       [X + R, Y, -1],
       [X - R, Y, 0]
@@ -40,8 +40,27 @@ module.exports = (dxf)->
     return
 
   newPolyline = ->
-    next()
-    echo 'LWPOLYLINE'
+    paths.push me = []
+    until done
+      next()
+      switch pair.id
+        when 0
+          done = true
+        when 10
+          # X
+          me.push tail = [+pair.val, 0, 0]
+        when 20
+          # Y
+          tail[1] = +pair.val
+        when 42
+          # Bulge
+          tail[2] = +pair.val
+        when 70
+          closed = 1 & +pair.val
+    if closed
+      me.push back = dbs.node.o2 me[0]
+      back[2] = 0
+    return
 
   oldPolyline = ->
     next()

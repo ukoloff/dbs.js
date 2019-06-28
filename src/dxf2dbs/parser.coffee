@@ -20,7 +20,23 @@ module.exports = (dxf)->
         return
     pair = EOF
 
-  circle = ->
+  line = ->
+    loop
+      next()
+      switch pair.id
+        when 0
+          paths.push [[AX, AY, 0], [ZX, ZY, 0]]
+          return
+        when 10
+          AX = +pair.val
+        when 20
+          AY = +pair.val
+        when 11
+          ZX = +pair.val
+        when 21
+          ZY = +pair.val
+
+  arc = ->
     until done
       next()
       switch pair.id
@@ -32,11 +48,29 @@ module.exports = (dxf)->
           Y = +pair.val
         when 40
           R = +pair.val
-    paths.push [
-      [X - R, Y, -1],
-      [X + R, Y, -1],
-      [X - R, Y, 0]
-    ]
+        when 50
+          startDeg = +pair.val
+        when 51
+          endDeg = +pair.val
+
+    if startDeg? and endDeg?
+      # Arc
+      C = [X, Y]
+      angle = endDeg - startDeg
+      angle -= 360 * Math.floor angle / 360
+      A = dbs.point.add C, dbs.point.o2 [R, 0], dbs.o2.ccw startDeg
+      A[2] = Math.tan angle * Math.PI / 720
+      Z = dbs.point.add C, dbs.point.o2 [R, 0], dbs.o2.ccw endDeg
+      Z[2] = 0
+      C =
+      paths.push [A, Z]
+    else
+      # Circle
+      paths.push [
+        [X - R, Y, -1],
+        [X + R, Y, -1],
+        [X - R, Y, 0]
+      ]
     return
 
   newPolyline = ->
@@ -79,7 +113,7 @@ module.exports = (dxf)->
             me.push tail = [0, 0, 0]
         when 10
           # X
-          tail[0] = pair.val
+          tail[0] = +pair.val
         when 20
           # Y
           tail[1] = +pair.val
@@ -107,16 +141,26 @@ module.exports = (dxf)->
           when 'EOF'
             done = true
             break
-          when 'CIRCLE'
-            circle()
+          when 'LINE'
+            line()
+            continue
+          when 'CIRCLE', 'ARC'
+            arc()
             continue
           when 'POLYLINE'
             oldPolyline()
             continue
+          when 'LWPOLYLINE'
+            newPolyline()
+            continue
       when 100
+        # Should never happen but nevertheless
         switch pair.val
+          when 'AcDbLine'
+            line()
+            continue
           when 'AcDbCircle'
-            circle()
+            arc()
             continue
           when 'AcDbPolyline'
             newPolyline()

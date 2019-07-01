@@ -17,3 +17,17 @@ part = parser source.open 1
 part.partid = source.n()
 res = [part]
 echo dbs.json res, true
+
+dst = params[0]
+if params.o
+  dst = if (at = folder params.o).y()
+    file at, file(dst).bn()
+  else
+    params.o
+dst = file dst + '.dbs'
+  .abs()
+if not params.f and dst.y()
+  echo "Skipping:", dst
+  exit 1
+echo "Writing:", dst
+dbs.save res, dst

@@ -2,3 +2,4 @@
 help: Show this help
 output: =Save result to file/folder
 force: Overwrite existing file
+spline: Replace splines with straight line

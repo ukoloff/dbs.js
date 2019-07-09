@@ -10,6 +10,13 @@ if params.h or params.length != 1
   options()
   exit()
 
+require './config'
+  .spline = if params.s
+    true
+  else
+    ->
+      throw Error "SPLINE found! Use --spline to convert to LINE..."
+
 echo "Reading", params[0]
 source = file params[0]
 

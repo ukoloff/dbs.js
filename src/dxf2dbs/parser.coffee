@@ -146,6 +146,29 @@ module.exports = (dxf)->
     pushPolyline me, closed
     return
 
+  spline = ->
+    thisVertex.splines.push me =
+      knots: []
+      controls: []
+      fits: []
+    loop
+      next()
+      switch pair.id
+        when 0
+          return
+        when 71
+          me.degree = +pair.val
+        when 40
+          me.knots.push +pair.val
+        when 10
+          me.controls.push control = [+pair.val, 0]
+        when 20
+          control[1] = +pair.val
+        when 11
+          me.fits.push fit = [+pair.val, 0]
+        when 21
+          fit[1] = +pair.val
+
   startBlock = ->
     if thisVertex.id
       throw SyntaxError "Nested BLOCK definition"
@@ -218,6 +241,9 @@ module.exports = (dxf)->
             continue
           when 'LWPOLYLINE'
             newPolyline()
+            continue
+          when 'SPLINE'
+            spline()
             continue
     if done
       break

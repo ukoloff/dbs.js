@@ -7,9 +7,18 @@ EOF =
   val: 'EOF'
 
 module.exports = (dxf)->
-  pair = {}
-  paths = []
+  vertices = []
+  thisVertex = 0
+  do newVertice = ->
+    vertices.push thisVertex =
+      id: vertices.length
+      closed: []
+      nonClosed: []
+      splines: []
+      edges: []
+    return
 
+  pair = {}
   # Read next pair of lines (id + value)
   next = ->
     try
@@ -25,7 +34,7 @@ module.exports = (dxf)->
       next()
       switch pair.id
         when 0
-          paths.push [[AX, AY, 0], [ZX, ZY, 0]]
+          thisVertex.nonClosed.push [[AX, AY, 0], [ZX, ZY, 0]]
           return
         when 10
           AX = +pair.val
@@ -63,18 +72,28 @@ module.exports = (dxf)->
       Z = dbs.point.add C, dbs.point.o2 [R, 0], dbs.o2.ccw endDeg
       Z[2] = 0
       C =
-      paths.push [A, Z]
+      thisVertex.nonClosed.push [A, Z]
     else
       # Circle
-      paths.push [
+      thisVertex.closed.push [
         [X - R, Y, -1],
         [X + R, Y, -1],
         [X - R, Y, 0]
       ]
     return
 
+  pushPolyline = (path, doClose)->
+    if doClose
+      path.push back = dbs.node.o2 path[0]
+      back[2] = 0
+      thisVertex.closed.push path
+    else
+      thisVertex.nonClosed.push path
+    return
+
+
   newPolyline = ->
-    paths.push me = []
+    me = []
     until done
       next()
       switch pair.id
@@ -92,12 +111,11 @@ module.exports = (dxf)->
         when 70
           closed = 1 & +pair.val
 
-    if closed
-      close me
+    pushPolyline me, closed
     return
 
   oldPolyline = ->
-    paths.push me = []
+    me = []
     until done
       next()
       switch pair.id
@@ -124,13 +142,7 @@ module.exports = (dxf)->
         break
       next()
 
-    if closed
-      close me
-    return
-
-  close = (path)->
-    path.push back = dbs.node.o2 path[0]
-    back[2] = 0
+    pushPolyline me, closed
     return
 
   next()
@@ -153,20 +165,17 @@ module.exports = (dxf)->
           when 'LWPOLYLINE'
             newPolyline()
             continue
-      when 100
-        # Should never happen but nevertheless
-        switch pair.val
-          when 'AcDbLine'
-            line()
-            continue
-          when 'AcDbCircle'
-            arc()
-            continue
-          when 'AcDbPolyline'
-            newPolyline()
-            continue
     if done
       break
     next()
 
-  paths: paths
+  addEdges vertices
+
+addEdges = (vertices)->
+  byName = {}
+  for v in vertices when v.name
+    byName[v.name] ?= v
+  for v in vertices when v.name
+    for edge in v.edges when toV = byName[edge.name]
+      edge.vertex = toV
+  vertices[0]

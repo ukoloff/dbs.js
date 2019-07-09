@@ -13,12 +13,12 @@ if params.h or params.length != 1
 echo "Reading", params[0]
 source = file params[0]
 
-layout = require './layout'
-layout source.open 1
-exit 0
-
 parser = require './parser'
 part = parser source.open 1
+
+echo yaml.safeDump part
+exit 0
+
 part.partid = source.n()
 res = [part]
 echo dbs.json res, true

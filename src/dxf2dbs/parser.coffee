@@ -12,6 +12,7 @@ module.exports = (dxf)->
   do newVertice = ->
     vertices.push thisVertex =
       id: vertices.length
+      base: [0, 0]
       closed: []
       nonClosed: []
       splines: []
@@ -145,6 +146,51 @@ module.exports = (dxf)->
     pushPolyline me, closed
     return
 
+  startBlock = ->
+    if thisVertex.id
+      throw SyntaxError "Nested BLOCK definition"
+    newVertice()
+    loop
+      next()
+      switch pair.id
+        when 0
+          return
+        when 2
+          thisVertex.name = pair.val
+        when 10
+          thisVertex.base[0] = +pair.val
+        when 20
+          thisVertex.base[1] = +pair.val
+
+  newEdge = ->
+    thisVertex.edges.push edge =
+      origin: [0, 0]
+      scale: [1, 1] # Not used
+      angle: 0
+      rows: 1
+      columns: 1
+    loop
+      next()
+      switch pair.id
+        when 0
+          return
+        when 2
+          edge.name = pair.val
+        when 10
+          edge.origin[0] = +pair.val
+        when 20
+          edge.origin[1] = +pair.val
+        when 41
+          edge.scale[0] = +pair.val
+        when 42
+          edge.scale[1] = +pair.val
+        when 50
+          edge.angle = +pair.val
+        when 70
+          edge.columns = +pair.val
+        when 71
+          edge.rows = +pair.val
+
   next()
   loop
     switch pair.id
@@ -153,6 +199,14 @@ module.exports = (dxf)->
           when 'EOF'
             done = true
             break
+          when 'BLOCK'
+            startBlock()
+            continue
+          when 'ENDBLK'
+            thisVertex = vertices[0]
+          when 'INSERT'
+            newEdge()
+            continue
           when 'LINE'
             line()
             continue
@@ -175,7 +229,7 @@ addEdges = (vertices)->
   byName = {}
   for v in vertices when v.name
     byName[v.name] ?= v
-  for v in vertices when v.name
+  for v in vertices
     for edge in v.edges when toV = byName[edge.name]
       edge.vertex = toV
   vertices[0]

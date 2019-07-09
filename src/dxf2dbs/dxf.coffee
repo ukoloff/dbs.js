@@ -14,14 +14,11 @@ echo "Reading", params[0]
 source = file params[0]
 
 parser = require './parser'
-part = parser source.open 1
+part =
+  paths: parser source.open 1
+  partid: source.n()
 
-echo yaml.safeDump part
-exit 0
-
-part.partid = source.n()
 res = [part]
-echo dbs.json res, true
 
 dst = params[0]
 if params.o

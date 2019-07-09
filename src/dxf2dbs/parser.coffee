@@ -224,6 +224,7 @@ module.exports = (dxf)->
     next()
 
   addEdges vertices
+    .paths
 
 addEdges = (vertices)->
   byName = {}
@@ -232,4 +233,5 @@ addEdges = (vertices)->
   for v in vertices
     for edge in v.edges when toV = byName[edge.name]
       edge.vertex = toV
-  vertices[0]
+  dfs = require './dfs'
+  dfs vertices[0]

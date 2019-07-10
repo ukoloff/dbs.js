@@ -1,6 +1,7 @@
 ###
 Parse DXF file
 ###
+dfs = require './dfs'
 
 EOF =
   id: 0
@@ -188,10 +189,12 @@ module.exports = (dxf)->
   newEdge = ->
     thisVertex.edges.push edge =
       origin: [0, 0]
-      scale: [1, 1] # Not used
+      # Not used so far
+      scale: [1, 1]
       angle: 0
       rows: 1
       columns: 1
+      cell: [0, 0]
     loop
       next()
       switch pair.id
@@ -207,6 +210,10 @@ module.exports = (dxf)->
           edge.scale[0] = +pair.val
         when 42
           edge.scale[1] = +pair.val
+        when 44
+          edge.cell[0] = +pair.val
+        when 45
+          edge.cell[1] = +pair.val
         when 50
           edge.angle = +pair.val
         when 70
@@ -259,5 +266,4 @@ addEdges = (vertices)->
   for v in vertices
     for edge in v.edges when toV = byName[edge.name]
       edge.vertex = toV
-  dfs = require './dfs'
   dfs vertices[0]

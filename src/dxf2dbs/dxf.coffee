@@ -1,3 +1,7 @@
+###
+DXF 2 DBS converter
+###
+parser = require './parser'
 options = getopt require './options'
 params = options argv
 
@@ -20,7 +24,6 @@ require './parser/config'
 echo "Reading", params[0]
 source = file params[0]
 
-parser = require './parser'
 part =
   paths: parser source.open 1
   partid: source.n()

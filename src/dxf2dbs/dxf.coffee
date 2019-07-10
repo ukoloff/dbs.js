@@ -10,7 +10,7 @@ if params.h or params.length != 1
   options()
   exit()
 
-require './config'
+require './parser/config'
   .spline = if params.s
     true
   else

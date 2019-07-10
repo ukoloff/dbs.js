@@ -3,11 +3,7 @@ Parse DXF file
 ###
 dfs = require './dfs'
 
-EOF =
-  id: 0
-  val: 'EOF'
-
-module.exports = (dxf)->
+module.exports = (dxfSrc)->
   vertices = []
   thisVertex = 0
   do newVertice = ->
@@ -23,13 +19,12 @@ module.exports = (dxf)->
   pair = {}
   # Read next pair of lines (id + value)
   next = ->
-    try
-      if /^\d+$/.test id = trim dxf.ReadLine()
-        pair =
-          id: +id
-          val: trim dxf.ReadLine()
-        return
-    pair = EOF
+    unless /^\d+$/.test line = trim dxfSrc.ReadLine()
+      throw Error "Invalid DXF file"
+    pair =
+      id: +line
+      val: trim dxfSrc.ReadLine()
+    return
 
   line = ->
     loop

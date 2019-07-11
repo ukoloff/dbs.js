@@ -168,7 +168,7 @@ module.exports = (dxfSrc)->
 
   startBlock = ->
     if thisVertex.id
-      throw SyntaxError "Nested BLOCK definition"
+      throw Error "Nested BLOCK definition"
     newVertice()
     loop
       next()

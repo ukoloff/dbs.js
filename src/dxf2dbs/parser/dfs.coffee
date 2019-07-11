@@ -20,7 +20,7 @@ module.exports = dfs = (vertex)->
     paths[i] = dbs.path.o2 path, transform
   vertex.paths = paths
 
-  vertex
+  return
 
 processSplines = (splines)->
   for spline in splines

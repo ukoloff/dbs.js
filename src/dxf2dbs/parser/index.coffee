@@ -2,6 +2,7 @@
 Parse DXF file
 ###
 dfs = require './dfs'
+reorder = require './reorder'
 
 module.exports = (dxfSrc)->
   vertices = []
@@ -252,7 +253,8 @@ module.exports = (dxfSrc)->
     next()
 
   addEdges vertices
-    .paths
+  dfs root = vertices[0]
+  reorder root.paths
 
 addEdges = (vertices)->
   byName = {}
@@ -261,4 +263,5 @@ addEdges = (vertices)->
   for v in vertices
     for edge in v.edges when toV = byName[edge.name]
       edge.vertex = toV
-  dfs vertices[0]
+  return
+

@@ -2,22 +2,17 @@
 Test DXF parser
 ###
 
-
 describe "DXF parser", ->
   it "works", ->
-    data = file "dxf/dxf.yml"
+    data = file "dxf/dxf.json"
       .load()
-    for k, v of yaml.safeLoad data
+    for k, v of json2 data
       src = file "dxf/#{k}.dxf"
 
       dbs.idxf.config.spline = false
       if v.splines
-        errors = 0
-        try
+        expect errors ->
           dbs.idxf src.open 1
-        catch
-          errors++
-        expect errors
         .to.equal 1
         dbs.idxf.config.spline = true
 
@@ -40,3 +35,11 @@ describe "DXF parser", ->
         .to.be.closeTo right.perimeter
         expect path.length
         .to.equal right.count
+
+errors = (cb)->
+  errs = 0
+  try
+    cb()
+  catch e
+    errs++
+  errs

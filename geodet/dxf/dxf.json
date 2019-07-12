@@ -1,0 +1,153 @@
+{
+  "square": {
+    "perimeter": 400,
+    "paths": [
+      {
+        "count": 5,
+        "perimeter": 400,
+        "closed": true,
+        "area": 10000
+      }
+    ],
+    "area": 10000
+  },
+  "splines": {
+    "perimeter": 915.4945899695762,
+    "paths": [
+      {
+        "count": 23,
+        "perimeter": 915.4945899695762,
+        "closed": true,
+        "area": 42803.62786522178
+      }
+    ],
+    "splines": 2,
+    "area": 42803.62786522178
+  },
+  "non-closed": {
+    "perimeter": 2488.2990264957716,
+    "paths": [
+      {
+        "count": 11,
+        "perimeter": 1670.3110167628936,
+        "closed": true,
+        "area": 152386.2833058846
+      },
+      {
+        "count": 2,
+        "perimeter": 817.988009732878,
+        "closed": false,
+        "area": 0
+      }
+    ],
+    "area": 152386.2833058846
+  },
+  "cross": {
+    "perimeter": 1045.0641017103114,
+    "paths": [
+      {
+        "count": 9,
+        "perimeter": 576.5685424949238,
+        "closed": true,
+        "area": 22300
+      },
+      {
+        "count": 25,
+        "perimeter": 468.49555921538763,
+        "closed": true,
+        "area": -10414.159265358958
+      }
+    ],
+    "area": 11885.840734641042
+  },
+  "poly": {
+    "perimeter": 1530.247798846565,
+    "paths": [
+      {
+        "count": 9,
+        "perimeter": 1530.247798846565,
+        "closed": true,
+        "area": 100469.20303190964
+      }
+    ],
+    "area": 100469.20303190964
+  },
+  "planka": {
+    "perimeter": 798.2499514882586,
+    "paths": [
+      {
+        "count": 9,
+        "perimeter": 716.5685424949239,
+        "closed": true,
+        "area": 12999.999999999987
+      },
+      {
+        "count": 3,
+        "perimeter": 20.420352248333657,
+        "closed": true,
+        "area": -33.18307240354221
+      },
+      {
+        "count": 3,
+        "perimeter": 20.420352248333657,
+        "closed": true,
+        "area": -33.183072403542155
+      },
+      {
+        "count": 3,
+        "perimeter": 20.420352248333657,
+        "closed": true,
+        "area": -33.18307240354221
+      },
+      {
+        "count": 3,
+        "perimeter": 20.420352248333657,
+        "closed": true,
+        "area": -33.183072403542155
+      }
+    ],
+    "area": 12867.267710385819
+  },
+  "cone": {
+    "perimeter": 1803.9425091560402,
+    "paths": [
+      {
+        "count": 15,
+        "perimeter": 1803.9425091560402,
+        "closed": true,
+        "area": 136658.74862160248
+      }
+    ],
+    "area": 136658.74862160248
+  },
+  "propeller": {
+    "perimeter": 1095.7618072842636,
+    "paths": [
+      {
+        "count": 9,
+        "perimeter": 797.3105051932332,
+        "closed": true,
+        "area": 25628.433189688065
+      },
+      {
+        "count": 3,
+        "perimeter": 298.45130209103036,
+        "closed": true,
+        "area": -7088.218424661972
+      }
+    ],
+    "area": 18540.214765026092
+  },
+  "lwpoly": {
+    "perimeter": 1404.3905311815956,
+    "paths": [
+      {
+        "count": 7,
+        "perimeter": 1404.3905311815956,
+        "closed": true,
+        "area": 100267.6600831438
+      }
+    ],
+    "area": 100267.6600831438
+  }
+}

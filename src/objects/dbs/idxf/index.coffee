@@ -3,9 +3,8 @@ Parse DXF file
 ###
 dfs = require './dfs'
 reorder = require './reorder'
-config = require './config'
 
-module.exports = parser = (dxfSrc)->
+module.exports = (dxfSrc)->
   vertices = []
   thisVertex = 0
   do newVertice = ->
@@ -265,5 +264,3 @@ addEdges = (vertices)->
     for edge in v.edges when toV = byName[edge.name]
       edge.vertex = toV
   return
-
-parser.config = config

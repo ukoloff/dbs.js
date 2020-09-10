@@ -12,7 +12,7 @@ module.exports = (file, defs)->
       svg += '\n'
     svg += dbs.part.svg part
   """
-  <svg height="100%" width="100%" viewBox="#{b.join ' '}"><g transform = "scale(1, -1)">#{defs or ''}
+  <svg height="100%" width="100%" viewBox="#{b.join ' '}"><g><g transform = "scale(1, -1)">#{defs or ''}
   #{svg}
-  </g></svg>
+  </g></g></svg>
   """

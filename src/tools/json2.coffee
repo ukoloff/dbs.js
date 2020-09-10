@@ -12,5 +12,5 @@ module.exports = (text)->
     |
     \b (?: null | true | false ) \b
     ///g, ']'
-    throw SyntaxError "Invalid JSON"
+    throw Error "Invalid JSON"
   do new Function "return (#{text})"

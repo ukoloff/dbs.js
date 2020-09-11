@@ -36,3 +36,11 @@ jobs:
 
       - name: Test
         run:  tmp\testing
+
+      - name: Save artifacts
+        run:  7z a -r dbs.zip tmp geodet
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: ./*.zip

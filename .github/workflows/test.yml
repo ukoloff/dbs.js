@@ -1,0 +1,46 @@
+name: test
+
+on:
+  push:
+
+jobs:
+  before:
+    runs-on: windows-latest
+    if: "! contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - run: echo "not contains '[skip ci]'"
+
+  test:
+    runs-on: windows-latest
+    needs: before
+
+    steps:
+
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key:  always
+
+      - name: Install packages
+        run:  npm install
+
+      - name: Build
+        run:  npm start
+
+      - name: Test
+        run:  tmp\testing
+
+      - name: Save artifacts
+        run:  7z a -r dbs.zip tmp geodet
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: ./*.zip

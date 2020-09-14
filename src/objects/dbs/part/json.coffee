@@ -6,8 +6,14 @@ module.exports = json = (part, pretty)->
   if pretty
     eol = "\n  "
     space = " "
+  pathids = ""
+  if part.pathids?.length
+    pathids = "#{
+      quote 'pathids'}:#{space}[#{
+        part.pathids.join ",#{space}"
+      }],#{eol}"
   s = "{#{eol}#{
-    quote 'partid'}:#{space}#{quote part.partid},#{eol}#{
+    quote 'partid'}:#{space}#{quote part.partid},#{eol}#{pathids}#{
     quote 'paths'}:#{space}["
   for path, i in part.paths
     s += ',' if i

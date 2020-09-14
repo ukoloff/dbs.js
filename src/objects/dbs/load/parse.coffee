@@ -37,6 +37,7 @@ module.exports = (reader)->
 
   # Remove scaffolding
   for k, part of reader.parts
+    part.pathids = part.paths
     part.paths = for pathNo in part.paths
       unless path = reader.paths[pathNo]
         throw Error "Path ##{pathNo} not found!"

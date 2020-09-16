@@ -15,7 +15,6 @@ module.exports = (file, defs)->
   """
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="100%" width="100%"
     viewBox="#{b.join ' '}"><g><g transform = "scale(1, -1)">#{defs or ''}
   #{svg}
   </g></g></svg>

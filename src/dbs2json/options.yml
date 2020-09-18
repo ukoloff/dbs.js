@@ -2,10 +2,10 @@
 help: Show this help
 output: =Save result to file/folder (- for stdout)
 force: Overwrite existing file
-pretty: Pretty output (JSON only)
+pretty: Pretty output (JSON/SVG only)
 algomate: Output as Algomate's .item-file
 dxf: Output as DXF
 edges: Output as list of edges
 json: Output as JSON (default)
-svg: Output as SVG (embedded into HTML)
+svg: Output as SVG (embedded into HTML unless pretty)
 yaml: Output as YAML

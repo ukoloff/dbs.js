@@ -2,6 +2,7 @@
 Entry point
 ###
 svg = require './svg'
+svgX = require './svg-standalone'
 edges = require './edges'
 options = getopt require './options'
 params = options argv
@@ -47,6 +48,9 @@ if params.e
 if params.a
   out 'item', dbs.algomate z
 if params.s
-  out 'html', svg z
+  if params.p
+    out 'svg', svgX z
+  else
+    out 'html', svg z
 if params.j or not params.J
   out 'json', dbs.json z, params.p

@@ -36,6 +36,18 @@ module.exports = (reader)->
       $: reader
 
   # Remove scaffolding
+  seenPaths = {}
+  for k, part of reader.parts
+    for pathNo in part.paths
+      seenPaths[pathNo] = true
+  unseenPaths = for k, v of reader.paths when not seenPaths[k]
+    k
+  if unseenPaths.length
+    # Add extra Part with missing Paths
+    reader.parts['-'] =
+      partid: '-'
+      paths: unseenPaths
+
   for k, part of reader.parts
     part.paths = for pathNo in part.paths
       unless path = reader.paths[pathNo]

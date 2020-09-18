@@ -9,4 +9,6 @@ module.exports = (rec)->
     chars[i] = chars[i - 1]
     chars[i - 1] = c
   part(rec).partid = String.fromCharCode.apply String, chars
+    .replace /\0/g, ' '
     .replace /^\s+|\s+$/g, ''
+  return

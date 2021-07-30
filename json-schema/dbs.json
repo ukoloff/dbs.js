@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DBS file",
+  "description": "Collection of 2D parts",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/part"
+  },
+  "minItems": 1,
+  "$defs": {
+    "point": {
+      "title": "Point on the plain",
+      "description": "X, Y and bulge (i.e. tan(angle / 4) for an arc)",
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 3,
+      "default": 0.0
+    },
+    "path": {
+      "title": "2D contour",
+      "description": "Polyline consisting of line segments and arcs",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/point"
+      },
+      "minItems": 2
+    },
+    "part": {
+      "title": "2D part",
+      "description": "Collection of plain contours",
+      "properties": {
+        "partid": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/path"
+          }
+        },
+        "area": {
+          "type": "number"
+        },
+        "perimeter": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "partid",
+        "paths"
+      ]
+    }
+  }
+}

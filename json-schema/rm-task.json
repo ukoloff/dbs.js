@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "#/$defs/task",
+  "$defs": {
+    "task": {
+      "title": "Task for RouteManager",
+      "description": "JSON version of RDF file, containing all data for running RouteManager",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "TaskData": {
+          "$ref": "#/$defs/params"
+        },
+        "Contours": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/contour"
+          }
+        }
+      },
+      "required": [
+        "Contours",
+        "TaskData"
+      ]
+    },
+    "contour": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Index": {
+          "type": "integer"
+        },
+        "ZeroBasedIndex": {
+          "type": "integer"
+        },
+        "Points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/point"
+          }
+        },
+        "NestedContours": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/contour"
+          }
+        }
+      },
+      "required": [
+        "Index",
+        "Points",
+        "ZeroBasedIndex"
+      ],
+      "title": "Contour"
+    },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Index": {
+          "type": "integer"
+        },
+        "ZeroBasedIndex": {
+          "type": "integer"
+        },
+        "GlobalIndex": {
+          "type": "integer"
+        },
+        "ZeroBasedGlobalIndex": {
+          "type": "integer"
+        },
+        "X": {
+          "type": "number"
+        },
+        "Y": {
+          "type": "number"
+        },
+        "UseCircuitAndFinishCutPoint": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "GlobalIndex",
+        "Index",
+        "UseCircuitAndFinishCutPoint",
+        "X",
+        "Y",
+        "ZeroBasedGlobalIndex",
+        "ZeroBasedIndex"
+      ],
+      "title": "Point"
+    },
+    "params": {
+      "title": "Configuration for RouteManager",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "StartX": {
+          "type": "number"
+        },
+        "StartY": {
+          "type": "number"
+        },
+        "TerminalMotion": {
+          "type": "boolean"
+        },
+        "FinishX": {
+          "type": "number"
+        },
+        "FinishY": {
+          "type": "number"
+        },
+        "SheetMinX": {
+          "type": "number"
+        },
+        "SheetMaxX": {
+          "type": "number"
+        },
+        "SheetMinY": {
+          "type": "number"
+        },
+        "SheetMaxY": {
+          "type": "number"
+        },
+        "ToolIdlingSpeed": {
+          "type": "number"
+        },
+        "ToolCutSpeed": {
+          "type": "number"
+        },
+        "PiercingDuration": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "FinishX",
+        "FinishY",
+        "PiercingDuration",
+        "SheetMaxX",
+        "SheetMaxY",
+        "SheetMinX",
+        "SheetMinY",
+        "StartX",
+        "StartY",
+        "TerminalMotion",
+        "ToolCutSpeed",
+        "ToolIdlingSpeed"
+      ]
+    }
+  }
+}

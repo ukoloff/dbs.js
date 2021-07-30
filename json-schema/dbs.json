@@ -1,12 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "DBS file",
-  "description": "Collection of 2D parts",
-  "type": "array",
-  "items": {
-    "$ref": "#/$defs/part"
-  },
-  "minItems": 1,
+  "$ref": "#/$defs/dbs",
   "$defs": {
     "point": {
       "title": "Point on the plain",
@@ -52,6 +46,15 @@
         "partid",
         "paths"
       ]
+    },
+    "dbs": {
+      "title": "DBS file",
+      "description": "Collection of 2D parts",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/part"
+      },
+      "minItems": 1,
     }
   }
 }

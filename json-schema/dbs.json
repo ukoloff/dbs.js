@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/part"
+  },
+  "$defs": {
+    "part": {
+      "properties": {
+        "partid": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/path"
+          }
+        },
+        "area": {
+          "type": "number"
+        },
+        "perimeter": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "partid",
+        "paths"
+      ]
+    },
+    "path": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/point"
+      },
+      "minItems": 2
+    },
+    "point": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 3,
+      "default": 0.0
+    }
+  }
+}

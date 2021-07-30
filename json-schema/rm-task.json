@@ -13,10 +13,7 @@
           "$ref": "#/$defs/params"
         },
         "Contours": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/contour"
-          }
+          "$ref": "#/$defs/contours"
         }
       },
       "required": [
@@ -25,6 +22,8 @@
       ]
     },
     "contour": {
+      "title": "2D contour",
+      "description": "Sequence of 2D points with nested contours allowed",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -41,20 +40,26 @@
           }
         },
         "NestedContours": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/contour"
-          }
+          "$ref": "#/$defs/contours"
         }
       },
       "required": [
         "Index",
         "Points",
         "ZeroBasedIndex"
-      ],
-      "title": "Contour"
+      ]
+    },
+    "contours": {
+      "title": "Several contours",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/contour"
+      },
+      "minItems": 1
     },
     "point": {
+      "title": "Pierce poitnt",
+      "description": "Feasible pierse point to cut-in",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -88,8 +93,7 @@
         "Y",
         "ZeroBasedGlobalIndex",
         "ZeroBasedIndex"
-      ],
-      "title": "Point"
+      ]
     },
     "params": {
       "title": "Configuration for RouteManager",

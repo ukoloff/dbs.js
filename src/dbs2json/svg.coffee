@@ -9,13 +9,11 @@ module.exports = (file)->
 <style>
 #{require './css'}
 </style>
-<script src="http://ariutta.github.io/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
 <script>
-  setTimeout(initPan)
-  function initPan() {
-    var svg = document.getElementsByTagName('svg')[0]
-    svgPanZoom(svg, {controlIconsEnabled: true})
-  }
+  setTimeout(function () {
+    svgPanZoom('svg', {controlIconsEnabled: true})
+  })
 </script>
 </head>
 <body>

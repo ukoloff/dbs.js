@@ -8,5 +8,5 @@ module.exports = (part)->
       svg += '\n'
     svg += dbs.path.svg path
   """
-  <path name="#{part.partid}" d="#{svg}"/>
+  <path partid="#{part.partid}" class="dbs" d="#{svg}"/>
   """

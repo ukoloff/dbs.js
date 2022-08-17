@@ -5,7 +5,7 @@ bounds = require './bounds'
 
 module.exports = (file, defs)->
   b = bounds file
-  b = dbs.rect.expand b, 1.01
+  b = dbs.rect.expand b, 1.005
   b = [b[0][0], -b[1][1]].concat dbs.rect.size b
   svg = ''
   for part in file

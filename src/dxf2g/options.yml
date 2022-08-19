@@ -4,3 +4,4 @@ output: =Save result to file/folder
 force: Overwrite existing file
 spline: Replace splines with straight line
 mirror: Process in opposite direction
+clean: G-code only (no preamble)

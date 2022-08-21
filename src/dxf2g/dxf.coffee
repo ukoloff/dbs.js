@@ -1,6 +1,9 @@
 ###
 DXF Parser for Turning Stage 1 (to G-code)
 ###
+dmp = require './dmp'
+axes = require './axes'
+
 options = getopt require './options'
 
 params = options argv
@@ -23,3 +26,7 @@ echo "Reading", params[0]
 source = file params[0]
 
 paths = dbs.idxf source.open 1
+
+dmp paths
+paths = axes paths
+dmp paths

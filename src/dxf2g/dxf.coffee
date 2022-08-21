@@ -5,6 +5,7 @@ axes = require './axes'
 mirror = require './mirror'
 upper = require './upper'
 g = require './g'
+preamble = require './preamble'
 
 options = getopt require './options'
 
@@ -40,5 +41,9 @@ if params.m
 
 upper paths
 
-Gcode = g paths
+Gcode = ''
+if not params.c
+  Gcode = preamble paths, source.n()
+Gcode += g paths
+
 echo Gcode

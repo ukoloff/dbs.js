@@ -3,6 +3,7 @@ DXF Parser for Turning Stage 1 (to G-code)
 ###
 dmp = require './dmp'
 axes = require './axes'
+mirror = require './mirror'
 
 options = getopt require './options'
 
@@ -27,6 +28,13 @@ source = file params[0]
 
 paths = dbs.idxf source.open 1
 
-dmp paths
 paths = axes paths
+
+if paths.length > 1
+  echo "WARNING. Contours found:", paths.length
+
+if params.m
+  echo "Applying Z-mirror..."
+  mirror paths, 0
+
 dmp paths

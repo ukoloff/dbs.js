@@ -4,6 +4,7 @@ DXF Parser for Turning Stage 1 (to G-code)
 dmp = require './dmp'
 axes = require './axes'
 mirror = require './mirror'
+upper = require './upper'
 
 options = getopt require './options'
 
@@ -36,5 +37,7 @@ if paths.length > 1
 if params.m
   echo "Applying Z-mirror..."
   mirror paths, 0
+
+upper paths
 
 dmp paths

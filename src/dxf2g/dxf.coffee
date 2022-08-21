@@ -1,10 +1,10 @@
 ###
 DXF Parser for Turning Stage 1 (to G-code)
 ###
-dmp = require './dmp'
 axes = require './axes'
 mirror = require './mirror'
 upper = require './upper'
+g = require './g'
 
 options = getopt require './options'
 
@@ -40,4 +40,5 @@ if params.m
 
 upper paths
 
-dmp paths
+Gcode = g paths
+echo Gcode

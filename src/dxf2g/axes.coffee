@@ -7,6 +7,7 @@ module.exports = (paths)->
   axLen = 0
   axCnt = 0
   axW = 0
+  nonClosed = 0
 
   contours = []
   for path in paths
@@ -15,6 +16,7 @@ module.exports = (paths)->
       continue
     ax = isAxis path
     if ax < 0
+      nonClosed++
       continue
     # New Axis found
     axCnt++
@@ -34,6 +36,9 @@ module.exports = (paths)->
   if axCnt == 0
     echo "Axis not found. Preserving coordinates..."
     return contours
+
+  if nonClosed > 0
+    echo "WARNING. Non-closed contours found:", nonClosed
 
   if axCnt > 1
     echo "Axes found:", axCnt,

@@ -38,7 +38,7 @@ module.exports = (paths)->
   if axCnt > 1
     echo "Axes found:", axCnt,
 
-  echo "Using Axis:", "XZ".charAt(axDir), "=", axPos
+  echo "Using Axis:", "ZX".charAt(axDir), "=", axPos
 
   if axDir == 0
     rotateCW contours

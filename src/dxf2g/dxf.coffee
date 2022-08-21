@@ -46,4 +46,16 @@ if not params.c
   Gcode = preamble paths, source.n()
 Gcode += g paths
 
-echo Gcode
+dst = file params[0]
+dst = file dst.up(), dst.n() + '.ngc'
+if params.o
+  dst = if (at = folder params.o).y()
+    file at, dst.bn()
+  else
+    file params.o
+dst = dst.abs()
+if not params.f and dst.y()
+  echo "Skipping:", dst
+  exit 1
+echo "Writing:", dst
+dst.save Gcode

@@ -56,7 +56,7 @@ isAxis = (path)->
   return
 
 close = (path)->
-  path[path.length - 1] = 0
+  path[path.length - 1][2] = 0
   path.push path[0].slice(0, 2).concat 0
   return
 

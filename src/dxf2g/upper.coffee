@@ -15,4 +15,8 @@ module.exports = (paths)->
     for pt in path
       pt[0] -= R[0][0] # Or: R[1][0] for right alignment
 
+  for path in paths
+    if 0 > dbs.path.area path
+      dbs.path.reverse path
+
   return

@@ -47,7 +47,7 @@ if not params.c
 Gcode += g paths
 
 dst = file params[0]
-dst = file dst.up(), dst.n() + '.ngc'
+dst = file dst.up(), dst.n() + '.txt'
 if params.o
   dst = if (at = folder params.o).y()
     file at, dst.bn()

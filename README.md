@@ -6,4 +6,10 @@ Sirius CAD/CAM in JavaScript
 
 ## Download
 
-Current build is available [here](https://ci.appveyor.com/api/projects/ukoloff/dbs-js/artifacts/dbs.zip?branch=master).
+- [DBS Utilities][GitHub]
+- [Full build package][AppVeyor]
+- [JSON Schemas for DBS et al](json-schema)
+
+
+[GitHub]: https://ukoloff.github.io/dbs.js/dbs-util.zip
+[AppVeyor]: https://ci.appveyor.com/api/projects/ukoloff/dbs-js/artifacts/dbs.zip?branch=master

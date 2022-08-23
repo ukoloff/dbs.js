@@ -83,6 +83,11 @@ jobs:
         run: |
           zip ../dbs-util *.bat -x testing.bat
 
-      - name: Show
+      - name: Build
+        working-directory: www
         run: |
+          rm -rf json-schema
+          cp -rf ../json-schema .
+          cp -f ../*.md .
+          cp -f ../dbs-util.zip .
           ls -lR

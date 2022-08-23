@@ -1,7 +1,8 @@
-name: test
+name: DBS
 
 on:
   push:
+
 
 jobs:
   before:
@@ -16,11 +17,9 @@ jobs:
 
     steps:
 
-      - name: Check out
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
 
       - name: Cache Node.js modules
         uses: actions/cache@v2
@@ -28,8 +27,7 @@ jobs:
           path: ~/.npm
           key:  always
 
-      - name: Install packages
-        run:  npm install
+      - run:  npm install
 
       - name: Build
         run:  npm start

@@ -48,7 +48,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: test
-    if: github.ref == "publish"
+    if: github.ref_name == 'publish'
 
     steps:
       - uses: actions/checkout@v2

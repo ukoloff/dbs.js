@@ -83,6 +83,10 @@ jobs:
         run: |
           zip ../dbs-util *.bat -x testing.bat
 
+      - name: Make git commit message
+        run: |
+          git log -1 --format="%h: %s" > .commit
+
       - name: Build
         working-directory: www
         run: |
@@ -90,4 +94,8 @@ jobs:
           cp -rf ../json-schema .
           cp -f ../*.md .
           cp -f ../dbs-util.zip .
-          ls -lR
+          git add --all
+          git config user.email "none"
+          git config user.name "GitHub Pages Publisher"
+          git diff-index --quiet HEAD || git commit -F ../.commit
+          git push

@@ -54,20 +54,7 @@ jobs:
 
       - run: unzip *.zip
 
-      - name: Show
-        shell: bash
-        run: |
-          pwd
-          ls -lR
-
-      - name: Show again
-        shell: bash
-        working-directory: tmp
-        run: |
-          pwd
-          ls -lR
-
-      - run: testing
+      - run: ./testing
         working-directory: tmp
 
   publish:

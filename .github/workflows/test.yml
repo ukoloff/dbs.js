@@ -1,26 +1,24 @@
-name: test
+name: DBS
 
 on:
   push:
 
 jobs:
   before:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     if: "! contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - run: echo "not contains '[skip ci]'"
 
-  test:
-    runs-on: windows-latest
+  build:
+    runs-on: ubuntu-latest
     needs: before
 
     steps:
 
-      - name: Check out
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
 
       - name: Cache Node.js modules
         uses: actions/cache@v2
@@ -28,19 +26,75 @@ jobs:
           path: ~/.npm
           key:  always
 
-      - name: Install packages
-        run:  npm install
+      - run:  npm install
 
       - name: Build
         run:  npm start
 
-      - name: Test
-        run:  tmp\testing
-
-      - name: Save artifacts
+      - name: Assemble artifacts
         run:  7z a -r dbs.zip tmp geodet
 
       - uses: actions/upload-artifact@v2
         with:
           name: bundle
           path: ./*.zip
+
+  test:
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: bundle
+          path: .
+
+      - run: unzip *.zip
+
+      - run: ./testing
+        working-directory: tmp
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref_name == 'master'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          # fetch-depth: 2
+          ref: gh-pages
+          path: www
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: bundle
+          path: .
+
+      - name: UnPack
+        run: |
+          unzip -jod scripts *.zip
+
+      - name: RePack
+        working-directory: scripts
+        run: |
+          zip ../dbs-util *.bat -x testing.bat
+
+      - name: Make git commit message
+        run: |
+          git log -1 --format="%h: %s" > .commit
+
+      - name: Build
+        working-directory: www
+        run: |
+          rm -rf json-schema
+          cp -rf ../json-schema .
+          cp -f ../*.md .
+          cp -f ../dbs-util.zip .
+          git add --all
+          git config user.email "none"
+          git config user.name "GitHub Pages Publisher"
+          git diff-index --quiet HEAD || git commit -F ../.commit
+          git push

@@ -21,5 +21,5 @@ module.exports = (paths, id='?')->
 
   """
   for i in [1..total]
-    txt += "0,,,,,,,,,,,,\n"
+    txt += "0,,,,,,,,,,,\n"
   txt
